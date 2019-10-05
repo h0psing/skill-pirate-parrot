@@ -51,7 +51,7 @@ const GetNewFactHandler = {
 
 
     var timesAccessed = 0;
-    
+
     /*
     // REHYDRATE SESSION ATTRIBUTES AFTER RETURNING FROM THE CONNECTIONS DIRECTIVE.
 	  if (persistentAttributes !== undefined) {
@@ -72,8 +72,17 @@ const GetNewFactHandler = {
     //UPDATE PERSISTENT ATTRIBUTES
     //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
 
+    //Modify this to work with the database attributes
+    if (timesAccessed != 0) {
+      speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
+                    "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
+                    "<prosody pitch='x-high'> I'll try though! </prosody>";
+    } else {
+      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. Listen closely and memorise the directions required to navigate the waters and repeat them back. Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
+      
+    }
 
-
+    timesAccessed++;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
