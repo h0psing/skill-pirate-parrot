@@ -32,15 +32,47 @@ const GetNewFactHandler = {
       || (request.type === 'IntentRequest'
         && request.intent.name === 'GetNewFactIntent');
   },
-  handle(handlerInput) {
+  async handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     // gets a random fact by assigning an array to the variable
     // the random item from the array will be selected by the i18next library
     // the i18next library is set up in the Request Interceptor
     const randomFact = requestAttributes.t('FACTS');
+
+    console.log("log: new");
+
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
     speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" + "<prosody pitch='x-high'> I'll sure try though! </prosody>";
+
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    //const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();	
+    //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+  
+    
+    var timesAccessed = 0;
+    /*
+    // REHYDRATE SESSION ATTRIBUTES AFTER RETURNING FROM THE CONNECTIONS DIRECTIVE.
+	  if (persistentAttributes !== undefined) {
+      console.log("[Debug: LaunchRequestHandler] Rehydrating session attributes")
+
+      if (persistentAttributes.level !== undefined) {
+        sessionAttributes.timesAccessed = persistentAttributes.timesAccessed;
+        console.log("[debug: persistentAttributes.timesAccessed]" + sessionAttributes.timesAccessed);
+      } else {
+        sessionAttributes.timesAccessed = 0;
+      }
+    }
+    */
+	
+	  //SAVE ATTRIBUTES
+    //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+
+    //UPDATE PERSISTENT ATTRIBUTES
+    //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
+
+
+
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -176,6 +208,74 @@ const LocalizationInterceptor = {
   }
 };
 
+
+
+
+  
+
+const ResponsePersistenceInterceptor = {
+  process(handlerInput, responseOutput) {
+      
+          //let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+
+          //sessionAttributes['lastUseTimestamp'] = new Date(handlerInput.requestEnvelope.request.timestamp).getTime();
+
+          //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
+
+          return new Promise((resolve, reject) => {
+              handlerInput.attributesManager.savePersistentAttributes()
+                  .then(() => {
+                      resolve();
+                  })
+                  .catch((err) => {
+                      reject(err);
+                  });
+          });
+  }
+};
+
+const RequestPersistenceInterceptor = {
+  process(handlerInput) {
+      if(handlerInput.requestEnvelope.session['new']) {
+
+          return new Promise((resolve, reject) => {
+
+              handlerInput.attributesManager.getPersistentAttributes()
+
+                  .then((sessionAttributes) => {
+                      sessionAttributes = sessionAttributes || {};
+
+                      // console.log(JSON.stringify(sessionAttributes, null, 2));
+
+                      // if(Object.keys(sessionAttributes).length === 0) {
+                      //     console.log('--- First Ever Visit for userId ' + handlerInput.requestEnvelope.session.user.userId);
+
+                      //     const initialAttributes = constants.getMemoryAttributes();
+                      //     sessionAttributes = initialAttributes;
+
+                      // }
+
+                      handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
+
+                      handlerInput.attributesManager.savePersistentAttributes()
+                          .then(() => {
+                              resolve();
+                          })
+                          .catch((err) => {
+                              reject(err);
+                          });
+
+                  });
+
+          });
+
+      } // end session['new']
+
+  }
+};
+
+
+
 const skillBuilder = Alexa.SkillBuilders.custom();
 
 exports.handler = skillBuilder
@@ -187,10 +287,19 @@ exports.handler = skillBuilder
     FallbackHandler,
     SessionEndedRequestHandler,
   )
+  //.addResponseInterceptors(ResponsePersistenceInterceptor)
+  //.addRequestInterceptors(LocalizationInterceptor,RequestPersistenceInterceptor)
   .addRequestInterceptors(LocalizationInterceptor)
   .addErrorHandlers(ErrorHandler)
-  .withCustomUserAgent('sample/basic-fact/v2')
+  //.withTableName("PersistPirateParrot")
+  //.withAutoCreateTable(true)
+  //.withCustomUserAgent('sample/basic-fact/v2')
   .lambda();
+
+
+
+
+
 
 // TODO: Replace this data with your own.
 // It is organized by language/locale.  You can safely ignore the locales you aren't using.
