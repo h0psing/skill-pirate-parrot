@@ -105,7 +105,7 @@ const DirectionHandler = {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     console.log("log: ");
     let directionSlot = handlerInput.requestEnvelope.request.intent.slots;
-    var directionResponse = directionSlot.value;
+  var directionResponse = directionSlot.direction['value'];
     console.log("log: slots", directionResponse);
     var speakOutput = "i think you said this, " + directionResponse + ". am I right?";
 
