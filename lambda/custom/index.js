@@ -51,6 +51,7 @@ const GetNewFactHandler = {
 
 
     var timesAccessed = 0;
+    
     /*
     // REHYDRATE SESSION ATTRIBUTES AFTER RETURNING FROM THE CONNECTIONS DIRECTIVE.
 	  if (persistentAttributes !== undefined) {
