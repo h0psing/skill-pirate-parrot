@@ -9,7 +9,8 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- */
+
+
 
 //
 // Alexa Fact Skill - Sample for Beginners
@@ -38,7 +39,7 @@ const GetNewFactHandler = {
     const randomFact = requestAttributes.t('FACTS');
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = '<audio src="soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island!";
+    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island!";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
