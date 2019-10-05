@@ -67,8 +67,6 @@ const GetNewFactHandler = {
     var turn = sessionAttributes.turn;
     turn = 1;
 
-    
-
     console.log("log: Assets.levels", Assets.levels);
     console.log("log: Assets.levels['1']", Assets.levels["1"]);
 
@@ -88,18 +86,12 @@ const GetNewFactHandler = {
 
 	  //SAVE ATTRIBUTES
     //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
     //UPDATE PERSISTENT ATTRIBUTES
     //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
 
-    //Modify this to work with the database attributes
-  
-
     timesAccessed++;
 
-
-  
-    reprompt = "please asay again";
+    reprompt = "please yes or no to continue";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -150,6 +142,7 @@ const DirectionHandler = {
     var correctAnswer = levelTurns.Answer;
     var correctResponse = levelTurns.CorrectResponse;
     var incorrectResponse = levelTurns.IncorrectResponse;
+    sessionAttributes.state = levelTurns.STATE;
     console.log("log: playerAnswer", playerAnswer);
     console.log("log: correctAnswer", correctAnswer);
 
@@ -183,6 +176,7 @@ const DirectionHandler = {
     }
     
     reprompt = "Please shout out the direction";
+    sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -212,6 +206,7 @@ const RepeatCommandHandler = {
     var count = 0;
     var levelTurns = Assets.levels[levelString][turn-1];
     var correctAnswerArray = levelTurns.Answer;
+    sessionAttributes.state = levelTurns.STATE;
     console.log("log: correctAnswerArray: ", correctAnswerArray)
     console.log("log: playerAnswer: ", playerAnswer)
     var loop1 = false;
@@ -276,6 +271,7 @@ const RepeatCommandHandler = {
     console.log("log: speakOutput", speakOutput);
 
     var reprompt = "please say again";
+    sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -293,7 +289,7 @@ const HelpHandler = {
   handle(handlerInput) {
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-   
+
     var speakOutput = "";
     var reprompt = "";
     if (sessionAttributes.state === "COORDINATES") {

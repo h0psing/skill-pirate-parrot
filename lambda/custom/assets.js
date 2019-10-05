@@ -15,7 +15,7 @@ const levels = {
                     "<voice name='Russell'><lang xml:lang='en-AU'> "
                     + "OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"
                     + "</lang></voice> ",
-        "Answer":['raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
+        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
         "CorrectResponse": 
                     "<voice name='Russell'><lang xml:lang='en-AU'> "
                     +"Great, you've gotten the crew to raise the anchor"+"</lang></voice> ",
