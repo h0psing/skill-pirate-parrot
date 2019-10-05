@@ -49,9 +49,9 @@ const GetNewFactHandler = {
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
-                    "<prosody pitch='x-high'> I'll try though! </prosody>" 
-                    + "Are you ready to begin?";
+                    captainSays("Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!")+
+                    parrotSays("I'll try though!")+
+                    +captainSays( "Are you ready to begin?");
     } else {
       speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. " 
       + "Listen closely and memorise the directions required to navigate the waters and repeat them back. " 
