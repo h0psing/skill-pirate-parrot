@@ -20,6 +20,14 @@
           "samples": []
         },
         {
+          "name": "YesIntent",
+          "samples": []
+        },
+        {
+          "name": "NoIntent",
+          "samples": []
+        },
+        {
           "name": "GetNewFactIntent",
           "samples": [
             "a fact",

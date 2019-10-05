@@ -19,6 +19,7 @@
 
 const Queue = require('./Queue.js');
 const Alexa = require('ask-sdk-core');
+const Assets = require('./assets.js');
 const i18n = require('i18next');
 
 const HELP_MESSAGE = "In this game, you’re helping the captain and his crew navigate through perilous waters. Listen closely and memorise the directions required to navigate the waters and repeat them back. Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
@@ -39,16 +40,27 @@ const GetNewFactHandler = {
     // the i18next library is set up in the Request Interceptor
     const randomFact = requestAttributes.t('FACTS');
 
+
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
+
+
     console.log("log: new");
 
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" + "<prosody pitch='x-high'> I'll try though! </prosody>";
+    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' 
+    + "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" 
+    + "<prosody pitch='x-high'> I'll try though! </prosody>" 
+    + "Let's get to the coordinates, are you ready to sail the high seas?";
 
-    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-    //const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-    //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
 
+    sessionAttributes.playerName = "John";
+    sessionAttributes.challenge = "SKULL_ISLAND";
+    sessionAttributes.state = "COORDINATES";
+
+    sessionAttributes.turn = 1;
 
     var timesAccessed = 0;
 
@@ -84,13 +96,17 @@ const GetNewFactHandler = {
 
     timesAccessed++;
 
+    console.log("log: Assets.levels", Assets.levels);
+  
+    reprompt = "please asay again";
+
     return handlerInput.responseBuilder
       .speak(speakOutput)
       // Uncomment the next line if you want to keep the session open so you can
       // ask for another fact without first re-opening the skill
       // .reprompt(requestAttributes.t('HELP_REPROMPT'))
       .withSimpleCard(requestAttributes.t('SKILL_NAME'), randomFact)
-      .reprompt('please say again')
+      .reprompt(reprompt)
       .getResponse();
   },
 };
@@ -108,10 +124,20 @@ const DirectionHandler = {
   var directionResponse = directionSlot.direction['value'];
     console.log("log: slots", directionResponse);
     var speakOutput = "i think you said this, ";// + directionResponse;
+    
+    var correct = false;
+    correct = true;
+    if (correct) {
+      speakOutput = "well done you must be listening";
+    } else {
+      speakOutput = "clean out that junk in your ears";
+    }
+
+    reprompt = "Please shout out the direction";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
-      .reprompt(requestAttributes.t('HELP_REPROMPT'))
+      .reprompt(reprompt)
       .getResponse();
   },
 };
@@ -147,6 +173,44 @@ const HelpHandler = {
     return handlerInput.responseBuilder
       .speak(HELP_MESSAGE)
       .reprompt(HELP_MESSAGE)
+      .getResponse();
+  },
+};
+
+const YesHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'AMAZON.YesIntent';
+  },
+  handle(handlerInput) {
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    var speakOutput = "The crew think I know the way. If they know I have the map they’ll kill me."
+     + "We’ll practice now from above deck, but when the time comes, I’ll tell you the directions from under the deck." 
+     + "Shout to the imaginary crew North North North!";
+
+     reprompt = "Please shout out the direction";
+
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(speakOutput)
+      .getResponse();
+  },
+};
+
+const NoHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'AMAZON.NoIntent';
+  },
+  handle(handlerInput) {
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    var speakOutput = "You said no";
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(speakOutput)
       .getResponse();
   },
 };
@@ -314,6 +378,8 @@ exports.handler = skillBuilder
     GetNewFactHandler,
     HelpHandler,
     ExitHandler,
+    YesHandler,
+    NoHandler,
     RepeatCommandHandler,
     DirectionHandler,
     FallbackHandler,
