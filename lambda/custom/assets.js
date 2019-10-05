@@ -19,4 +19,10 @@ export const levels = {
             "ResponseType":"Repeat"
         }
     ]
+};
+export const sounds = {
+    "waves":"",
+    "anchor":"",
+    "sails":"",
+    "woodCreeking":""
 }
