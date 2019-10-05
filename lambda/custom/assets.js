@@ -10,7 +10,9 @@ const levels = {
     "1":[
       {
         "turn": 1,
-        "Captain":"OK sailor.  Here's your first task.  tell the crew to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor",
+        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
+        +"OK sailor.  Here's your first task.  tell the crew to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"
+        + "</lang></voice> ",
         "Answer":['raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
         "CorrectResponse":"Great, you've gotten the crew to raise the anchor",
         "IncorrectResponse":"That's not quite right!  Tell the crew to raise the anchor",
@@ -19,7 +21,9 @@ const levels = {
       },
       {
         "turn": 2,
-        "Captain":"OK sailor.  Here's your second task.  tell the crew to Hoist the sails.  repeat after me, crew Hoist the sails",
+        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
+        +"OK sailor.  Here's your second task.  tell the crew to Hoist the sails.  repeat after me, crew Hoist the sails"
+        + "</lang></voice> ",
         "Answer":['hoist:horse:horses:voice:voices:what','say:sale:sales:sails:sell:seal:seals'],
         "CorrectResponse":"Aye - well done, the sails have been hoisted!",
         "IncorrectResponse":"How are we going to get going with the sails down!  Tell the crew to hoist the sails",
@@ -28,7 +32,9 @@ const levels = {
       },
       {
         "turn": 3,
-        "Captain":"Here's your third task.  tell the crew to set sail.  Repeat after me, crew set sail",
+        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
+        +"Here's your third task.  tell the crew to set sail.  Repeat after me, crew set sail"
+        + "</lang></voice> ",
         "Answer":['set:sit','sail:sale:snail:says:say'],
         "CorrectResponse":"OK - we're sailing away!",
         "IncorrectResponse":"Come on man, tell the crew to set sail!",
@@ -62,7 +68,8 @@ const levels = {
       },
       {
         "turn": 2,
-        "Captain":"We're still not out of the woods. Repeat to the crew, south west south west",
+        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "+"We're still not out of the woods. Repeat to the crew, south west south west"
+        + "</lang></voice> ",
         "Answer":"south west south west",
         "CorrectResponse":"Again - the plan will work!",
         "IncorrectResponse":"Again, we’re doomed! Repeat what I said and we’ll get there in one piece!",
@@ -71,7 +78,9 @@ const levels = {
       },
       {
         "turn": 3,
-        "Captain":"<audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> land ahoy captain. you've made it to skull island",
+        "Captain":"<audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> "
+                +"<voice name='Russell'><lang xml:lang='en-AU'> "+"land ahoy. you've made it to skull island"
+                +"</lang></voice> ",
         "Answer":"COMPLETE",
         "ResponseType":"Repeat",
         "Index":0
@@ -79,10 +88,10 @@ const levels = {
     ]
   };
 const sounds = {
-    "waves":"",
-    "anchor":"",
-    "sails":"",
-    "woodCreeking":""
+    waves : "",
+    anchor : "",
+    sails : "",
+    woodCreekin : ""
 }
 
 
