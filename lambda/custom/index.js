@@ -9,8 +9,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
-
-
+ */
 
 //
 // Alexa Fact Skill - Sample for Beginners
@@ -49,6 +48,27 @@ const GetNewFactHandler = {
       // ask for another fact without first re-opening the skill
       // .reprompt(requestAttributes.t('HELP_REPROMPT'))
       .withSimpleCard(requestAttributes.t('SKILL_NAME'), randomFact)
+      .reprompt('please say again')
+      .getResponse();
+  },
+};
+
+
+const RepeatCommandHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'RepeatCommandIntent';
+  },
+  handle(handlerInput) {
+    const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    console.log("log: ");
+    let command = handlerInput.requestEnvelope.request.intent.slots.command.value;
+    var speakOutput = "i think you said this, " + command;
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(requestAttributes.t('HELP_REPROMPT'))
       .getResponse();
   },
 };
@@ -163,6 +183,7 @@ exports.handler = skillBuilder
     GetNewFactHandler,
     HelpHandler,
     ExitHandler,
+    RepeatCommandHandler,
     FallbackHandler,
     SessionEndedRequestHandler,
   )
