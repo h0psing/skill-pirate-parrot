@@ -5,7 +5,7 @@
       "merge": {},
       "resources": {
         "manifest": {
-          "eTag": "1193c406407807c10b91910bf75e2f7f"
+          "eTag": "9d78fe08ce3d9a09c32c2adc189c4585"
         },
         "interactionModel": {
           "de-DE": {
@@ -64,7 +64,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-pirate-parrot",
             "handler": "index.handler",
-            "revisionId": "5362eab9-0bc8-466a-8b22-b6fd634c64a6",
+            "revisionId": "dd72a90d-7f73-40a1-9e94-d43df60a72c5",
             "runtime": "nodejs8.10"
           }
         ]
