@@ -79,7 +79,7 @@ const GetNewFactHandler = {
                     "<prosody pitch='x-high'> I'll try though! </prosody>";
     } else {
       speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. Listen closely and memorise the directions required to navigate the waters and repeat them back. Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
-      
+
     }
 
     timesAccessed++;
@@ -107,7 +107,7 @@ const DirectionHandler = {
     let directionSlot = handlerInput.requestEnvelope.request.intent.slots;
     var directionResponse = directionSlot.value;
     console.log("log: slots", directionResponse);
-    var speakOutput = "i think you said this, " + directionResponse;
+    var speakOutput = "i think you said this, " + directionResponse + ". am I right?";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
