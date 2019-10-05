@@ -225,7 +225,7 @@ const dedeData = {
 
 const enData = {
   translation: {
-    SKILL_NAME: 'Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
     GET_FACT_MESSAGE: 'Here\'s your fact: ',
     HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
     HELP_REPROMPT: 'What can I help you with?',
