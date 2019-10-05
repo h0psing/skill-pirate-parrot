@@ -70,6 +70,7 @@ const GetNewFactHandler = {
     console.log("log: sessionAttributes: ", sessionAttributes);
 
     var turn = sessionAttributes.turn;
+    turn = 1;
 
     
 
@@ -137,12 +138,13 @@ const DirectionHandler = {
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
 
-    console.log("log: ");
+    console.log("log: handler DirectionHandler");
     let directionSlot = handlerInput.requestEnvelope.request.intent.slots;
     var playerAnswer = directionSlot.direction['value'].toLowerCase();
-    var correctAnswer = Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].Direction.toLowerCase();
-    var correctResponse = Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].CorrectResponse;
-    var incorrectResponse = Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].IncorrectResponse;
+    var challengeTurns = Assets.levels[Assets.challenge[challenge]][turn-1];
+    var correctAnswer = challengeTurns.Direction.toLowerCase();
+    var correctResponse = challengeTurns.CorrectResponse;
+    var incorrectResponse = challengeTurns.IncorrectResponse;
     console.log("log: playerAnswer", playerAnswer);
     console.log("log: correctAnswer", correctAnswer);
 
@@ -151,11 +153,24 @@ const DirectionHandler = {
     var correct = false;
     if (sessionAttributes.state === "COORDINATES") {
       if(playerAnswer === correctAnswer) {
-        speakOutput = correctResponse;
-        turn = 2;
-        sessionAttributes.turn = turn;
-        speakOutput = speakOutput + Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].Captain;
+        console.log("log: correct direction");
+        console.log("log: turn: ", turn);
+        console.log("log: challengeTurns,", challengeTurns);
+        if (turn === challengeTurns.length) {
+          console.log("log: challengeComplete");
+          turn = 0;
+          sessionAttributes.turn = 0;
+          speakOutput = speakOutput + challengeTurns.Captain;
+        } else {
+          console.log("log: challenge in progress");
+          speakOutput = correctResponse;
+          turn = turn + 1;
+          sessionAttributes.turn = turn;
+          console.log("log: turn: ", turn);
+          speakOutput = speakOutput + Assets.levels[Assets.challenge[challenge]][turn-1].Captain;
+        }
       } else {
+        console.log("log: incorrect direction");
         speakOutput = incorrectResponse;
       }
     } else if (sessionAttributes.state === "TUTORIAL") {

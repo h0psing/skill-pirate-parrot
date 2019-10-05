@@ -49,7 +49,8 @@ const levels = {
       },
       {
         "turn": 3,
-        "Captain":"Sail away!",
+        //"Captain":"<speak><audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> land ahoy captain. you've made it to skull island</speak>",
+        "Captain":" land ahoy captain. you've made it to skull island",
         "Direction":"west west east",
         "ResponseType":"Repeat"
       }
