@@ -16,7 +16,7 @@ const levels = {
                     + "OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"
                     + "</lang></voice> ",
         "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
-        "CorrectResponse": 
+        "CorrectResponse":
                     "<voice name='Russell'><lang xml:lang='en-AU'> "
                     +"Great, you've gotten the crew to raise the anchor"+"</lang></voice> ",
         "IncorrectResponse":
@@ -81,8 +81,11 @@ const levels = {
         + "<s>Repeat after me LOUDLY!</s> "
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
+        + "<prosody pitch='x-high'> EAST! </prosody> </lang></voice>"
+        + "<prosody pitch='x-high'> WEST! </prosody> </lang></voice>""
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
+        + "<prosody pitch='x-high'> SOUTH! </prosody> </lang></voice>"
         + "</lang></voice> ",
         "Answer":"north east east",
         "CorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"OK - the plan will work!"+"</lang></voice> ",
