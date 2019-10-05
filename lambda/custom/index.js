@@ -86,6 +86,27 @@ const GetNewFactHandler = {
   },
 };
 
+const DirectionHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'DirectionIntent';
+  },
+  handle(handlerInput) {
+    const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    console.log("log: ");
+    let directionSlot = handlerInput.requestEnvelope.request.intent.slots;
+    var directionResponse = directionSlot.value;
+    console.log("log: slots", directionResponse);
+    var speakOutput = "i think you said this, " + directionResponse;
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(requestAttributes.t('HELP_REPROMPT'))
+      .getResponse();
+  },
+};
+
 
 const RepeatCommandHandler = {
   canHandle(handlerInput) {
@@ -285,6 +306,7 @@ exports.handler = skillBuilder
     HelpHandler,
     ExitHandler,
     RepeatCommandHandler,
+    DirectionHandler,
     FallbackHandler,
     SessionEndedRequestHandler,
   )

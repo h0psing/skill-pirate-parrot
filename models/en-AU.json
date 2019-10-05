@@ -59,14 +59,43 @@
             "slots": [
                 {
                     "name": "direction",
-                    "type": "AMAZON.SearchQuery"
+                    "type": "TYPE_DIRECTION"
                 }
             ],
             "samples": [
-                "ok captain {command}",
-                "yes captain {command}",
-                "i heard {command}",
-                "did you say {command}"
+                "{direction}",
+                "{direction} {direction}",
+                "{direction} {direction} {direction}",
+                "{direction} {direction} {direction} {direction}",
+                "{direction} {direction} {direction} {direction} {direction}",
+                "{direction} {direction} {direction} {direction} {direction} {direction}"
+            ]
+        }
+      ],
+      "types": [
+        {
+            "name": "TYPE_DIRECTION",
+            "values": [
+                {
+                    "name": {
+                        "value": "north"
+                    }
+                },
+                {
+                    "name": {
+                        "value": "south"
+                    }
+                },
+                {
+                    "name": {
+                        "value": "east"
+                    }
+                },
+                {
+                    "name": {
+                        "value": "west"
+                    }
+                }
             ]
         }
       ]
