@@ -345,7 +345,12 @@ const YesHandler = {
       .getResponse();
   },
 };
-
+const captainSays = (stuff)=>{
+  return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
+};
+const parrotSays = (stuff)=>{
+  return "<prosody pitch='x-high'>"+stuff+" </prosody>";
+};
 const NoHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
