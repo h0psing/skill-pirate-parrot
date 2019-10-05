@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "pirate parrot",
+      "invocationName": "pirate island",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",

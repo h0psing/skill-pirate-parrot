@@ -354,7 +354,7 @@ const NoHandler = {
   },
   handle(handlerInput) {
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-    var speakOutput = "You said no";
+    var speakOutput = "OK, plase say start to start a game or quit to exit";
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .reprompt(speakOutput)
@@ -381,18 +381,19 @@ const FallbackHandler = {
     var level = sessionAttributes.level;
     var levelString = level.toString();
     var levelTurns = Assets.levels[levelString][turn-1];
+    console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
-      speakOutput = "You need to listen, man,";
+      speakOutput = "You need to listen, man, " + levelTurns.Captain;
       reprompt = "Please repeat what the captain told you";
     } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = "You need to listen, man,";
+      speakOutput = "You need to listen, man, "+ levelTurns.Captain;
       reprompt = "Please repeat what the captain told you";
     }
 
     return handlerInput.responseBuilder
-      .speak(requestAttributes.t('FALLBACK_MESSAGE'))
-      .reprompt(requestAttributes.t('FALLBACK_REPROMPT'))
+      .speak(speakOutput)
+      .reprompt(speakOutput)
       .getResponse();
   },
 };
