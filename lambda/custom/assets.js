@@ -6,53 +6,75 @@ const challenge = {
     "VIRGIN_ISLAND":"2"
   }
 const levels = {
-    "0":[
-      {
-        "turn": 1,
-        "Captain":"Raise the anchor",
-        "ResponseType":"Repeat"
-      },
-      {
-        "turn": 2,
-       "Captain":"Hoist the sails",
-        "ResponseType":"Repeat"
-      },
-      {
-        "turn": 3,
-        "Captain":"Sail away!",
-        "ResponseType":"Repeat"
-      },
-      {
-        "turn": 4,
-        "Captain": "Get supplies",
-        "ResponseType":"Repeat"
-      }
-    ],
+    "count":2,
     "1":[
       {
         "turn": 1,
-        "Captain":"The crew think I know the way. If they know I have the map they’ll kill me. " 
-        + "We’ll practice now from above deck, but when the time comes, I’ll tell you the directions from under the deck."
-        + "Shout to the imaginary crew North North North!",
-        "Direction":"north north north",
+        "Captain":"OK sailor.  Here's your first task.  tell the crew to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor",
+        "Answer":['raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
+        "CorrectResponse":"Great, you've gotten the crew to raise the anchor",
+        "IncorrectResponse":"That's not quite right!  Tell the crew to raise the anchor",
+        "ResponseType":"Repeat",
+        "Index":1
+      },
+      {
+        "turn": 2,
+        "Captain":"OK sailor.  Here's your second task.  tell the crew to Hoist the sails.  repeat after me, crew Hoist the sails",
+        "Answer":['hoist:horse:horses:voice:voices:what','say:sale:sales:sails:sell:seal:seals'],
+        "CorrectResponse":"Aye - well done, the sails have been hoisted!",
+        "IncorrectResponse":"How are we going to get going with the sails down!  Tell the crew to hoist the sails",
+        "ResponseType":"Repeat",
+        "Index":2
+      },
+      {
+        "turn": 3,
+        "Captain":"Here's your third task.  tell the crew to set sail.  Repeat after me, crew set sail",
+        "Answer":['set:sit','sail:sale:snail:says:say'],
+        "CorrectResponse":"OK - we're sailing away!",
+        "IncorrectResponse":"Come on man, tell the crew to set sail!",
+        "ResponseType":"Repeat",
+        "Index":0
+      }
+    ],
+    "2":[
+      {
+        "turn": 1,
+        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
+        + "<s>The crew think I know the way...</s> "
+        + "<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
+        + "they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
+        + "<s>We’ll practice now up here, "
+        + "<prosody volume='x-soft'>but when the time comes,</prosody> "
+        + "I’ll look at the map below, shout directions up to you.</s> "
+        + "<break time='3s'/> "
+        + "<s>Right....</s> "
+        + "<s>Repeat after me LOUDLY!</s> "
+        + "<prosody volume='x-loud'> "
+        + "<s>NORTH!</s> "
+        + "<s>EAST!</s> "
+        + "<s>EAST!</s></prosody> "
+        + "</lang></voice> ",
+        "Answer":"north east east",
         "CorrectResponse":"OK - the plan will work!",
         "IncorrectResponse":"We’re doomed! Repeat what I said and we’ll get there in one piece!",
-        "ResponseType":"Repeat"
+        "ResponseType":"Repeat",
+        "Index":1
       },
       {
         "turn": 2,
         "Captain":"We're still not out of the woods. Repeat to the crew, south west south west",
-        "Direction":"south west south west",
+        "Answer":"south west south west",
         "CorrectResponse":"Again - the plan will work!",
         "IncorrectResponse":"Again, we’re doomed! Repeat what I said and we’ll get there in one piece!",
-        "ResponseType":"Repeat"
+        "ResponseType":"Repeat",
+        "Index":2
       },
       {
         "turn": 3,
-        //"Captain":"<speak><audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> land ahoy captain. you've made it to skull island</speak>",
-        "Captain":" land ahoy captain. you've made it to skull island",
-        "Direction":"west west east",
-        "ResponseType":"Repeat"
+        "Captain":"<audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> land ahoy captain. you've made it to skull island",
+        "Answer":"COMPLETE",
+        "ResponseType":"Repeat",
+        "Index":0
       }
     ]
   };

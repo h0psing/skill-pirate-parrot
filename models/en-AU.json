@@ -48,7 +48,8 @@
             "samples": [
                 "ok captain {command}",
                 "i heard {command}",
-                "did you say {command}"
+                "did you say {command}",
+                "crew {command}"
             ]
         },
         {
@@ -65,7 +66,9 @@
                 "{direction} {direction} {direction}",
                 "{direction} {direction} {direction} {direction}",
                 "{direction} {direction} {direction} {direction} {direction}",
-                "{direction} {direction} {direction} {direction} {direction} {direction}"
+                "{direction} {direction} {direction} {direction} {direction} {direction}",
+                "{direction} {direction} {direction} {direction} {direction} {direction} {direction}",
+                "{direction} {direction} {direction} {direction} {direction} {direction} {direction} {direction}"
             ]
         }
       ],

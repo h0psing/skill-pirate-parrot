@@ -2,14 +2,6 @@
   "manifest": {
     "publishingInformation": {
       "locales": {
-        "de-DE": {
-          "summary": "Erfahre lustige und interessante Fakten über den Weltraum.",
-          "examplePhrases": [
-            "Alexa öffne weltraumfakten"
-          ],
-          "name": "Weltraumfakten",
-          "description": "Frage nach Weltraumfakten und lerne, was wirklich wichtig ist bei dieser Materie, wie zum Beispiel, dunkle Materie. Weltraumfakten bietet Spaß für die ganze Familie. Um zu beginnen, sage einfach „Alexa, starte Weltraumfakten“ oder „Alexa, öffne Weltraumfakten“, um ein Faktum zu erhalten. Du kannst sie jederzeit unterbrechen, indem du „Alexa, stop“ sagst."
-        },
         "en-AU": {
           "summary": "Sail the seven seas.",
           "examplePhrases": [
@@ -24,7 +16,9 @@
             "brain training"
           ],
           "name": "Pirate Parrot",
-          "description": "Pirate Parrot.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+          "description": "Pirate Parrot.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
+          "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
         },
         "en-CA": {
           "summary": "Learn fun facts about space.",
@@ -38,8 +32,10 @@
             "facts",
             "trivia"
           ],
-          "name": "Space Facts",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+          "name": "Pirate Parrot",
+          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
+          "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
         },
         "en-GB": {
           "summary": "Learn fun facts about space.",
@@ -53,8 +49,10 @@
             "facts",
             "trivia"
           ],
-          "name": "Space Facts",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+          "name": "Pirate Parrot",
+          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
+          "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
         },
         "en-IN": {
           "summary": "Learn fun facts about space.",
@@ -68,8 +66,10 @@
             "facts",
             "trivia"
           ],
-          "name": "Space Facts",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+          "name": "Pirate Parrot",
+          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
+          "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
         },
         "en-US": {
           "summary": "Learn fun facts about space.",
@@ -83,8 +83,10 @@
             "facts",
             "trivia"
           ],
-          "name": "Space Facts",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+          "name": "Pirate Parrot",
+          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
+          "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
         }
       },
       "category": "KNOWLEDGE_AND_TRIVIA"

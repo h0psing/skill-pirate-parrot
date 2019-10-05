@@ -60,11 +60,6 @@ const GetNewFactHandler = {
     }
 
     console.log("log: SKILL LAUNCH");
-
-    
-
- 
-
     console.log("log: sessionAttributes: ", sessionAttributes);
     setSessionState(sessionAttributes);
     console.log("log: sessionAttributes: ", sessionAttributes);
@@ -111,7 +106,7 @@ const GetNewFactHandler = {
       // Uncomment the next line if you want to keep the session open so you can
       // ask for another fact without first re-opening the skill
       // .reprompt(requestAttributes.t('HELP_REPROMPT'))
-      .withSimpleCard(requestAttributes.t('SKILL_NAME'), randomFact)
+      .withSimpleCard(requestAttributes.t('SKILL_NAME'), "Sail the seven seas towards the treasure!")
       .reprompt(reprompt)
       .getResponse();
   },
@@ -119,7 +114,7 @@ const GetNewFactHandler = {
 
 function setSessionState(sessionAttributes) {
   sessionAttributes.playerName = "John";
-  sessionAttributes.challenge = "SKULL_ISLAND";
+  sessionAttributes.level = 1;
   sessionAttributes.state = "COORDINATES";
   sessionAttributes.turn = 1;
 }
@@ -134,17 +129,27 @@ const DirectionHandler = {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
    
-    var challenge = sessionAttributes.challenge;
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
+    var level = sessionAttributes.level;
+    //level = 2;
+    //turn = 1;
+
+    var levelString = level.toString();
+    console.log("log: levelString: ", levelString);
+    console.log("log: turn: ", turn);
+
 
     console.log("log: handler DirectionHandler");
-    let directionSlot = handlerInput.requestEnvelope.request.intent.slots;
-    var playerAnswer = directionSlot.direction['value'].toLowerCase();
-    var challengeTurns = Assets.levels[Assets.challenge[challenge]][turn-1];
-    var correctAnswer = challengeTurns.Direction.toLowerCase();
-    var correctResponse = challengeTurns.CorrectResponse;
-    var incorrectResponse = challengeTurns.IncorrectResponse;
+    let directionSlot = handlerInput.requestEnvelope.request.intent.slots.direction;
+    console.log("log: directionSlot", directionSlot);
+    console.log("log: directionSlot", directionSlot['value']);
+    var playerAnswer = directionSlot['value'];
+    var levelTurns = Assets.levels[levelString][turn-1];
+    console.log("log: levelTurns", levelTurns);
+    var correctAnswer = levelTurns.Answer;
+    var correctResponse = levelTurns.CorrectResponse;
+    var incorrectResponse = levelTurns.IncorrectResponse;
     console.log("log: playerAnswer", playerAnswer);
     console.log("log: correctAnswer", correctAnswer);
 
@@ -155,19 +160,19 @@ const DirectionHandler = {
       if(playerAnswer === correctAnswer) {
         console.log("log: correct direction");
         console.log("log: turn: ", turn);
-        console.log("log: challengeTurns,", challengeTurns);
-        if (turn === challengeTurns.length) {
+        console.log("log: levelTurns: ", levelTurns);
+        if (turn === levelTurns.length) {
           console.log("log: challengeComplete");
           turn = 0;
           sessionAttributes.turn = 0;
-          speakOutput = speakOutput + challengeTurns.Captain;
+          speakOutput = speakOutput + levelTurns.Captain;
         } else {
           console.log("log: challenge in progress");
           speakOutput = correctResponse;
           turn = turn + 1;
           sessionAttributes.turn = turn;
           console.log("log: turn: ", turn);
-          speakOutput = speakOutput + Assets.levels[Assets.challenge[challenge]][turn-1].Captain;
+          speakOutput = speakOutput + Assets.levels[levelString][turn-1].Captain;
         }
       } else {
         console.log("log: incorrect direction");
@@ -195,13 +200,86 @@ const RepeatCommandHandler = {
   },
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-    console.log("log: ");
-    let command = handlerInput.requestEnvelope.request.intent.slots.command.value;
-    var speakOutput = "i think you said this, " + command;
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+    console.log("log: handler RepeatCommandHandler");
+    var turn = sessionAttributes.turn;
+    var level = sessionAttributes.level;
+    var levelString = level.toString();
+    console.log("log: turn", turn);
+    console.log("log: level", level);
+    let playerAnswer = handlerInput.requestEnvelope.request.intent.slots.command.value;
+    var speakOutput = "";
+    var count = 0;
+    var levelTurns = Assets.levels[levelString][turn-1];
+    var correctAnswerArray = levelTurns.Answer;
+    console.log("log: correctAnswerArray: ", correctAnswerArray)
+    console.log("log: playerAnswer: ", playerAnswer)
+    var loop1 = false;
+    var loop2 = false;
+    for (i=0; i<correctAnswerArray.length; i++) {
+      console.log("log: correctAnswerArray[i]: ", correctAnswerArray[i]);
+      var correctAnswers = correctAnswerArray[i].split(':');
+      console.log("log: correctAnswers: ", correctAnswers)
+      for (j=0; j<correctAnswers.length; j++) {
+        console.log("log: correctAnswers[j]: ", correctAnswers[j])
+        if (playerAnswer.indexOf(correctAnswers[j]) > -1) {
+          console.log("*** MATCH ***");
+          if(i == 0) {
+            loop1 = true;
+            console.log("log: loop1");
+          } else if(i == 1) {
+            loop2 = true;
+            console.log("log: loop2");
+          }
+        }
+      }
+    }
+
+    var correct = false;
+    if (loop1 && loop2) {
+      correct = true;
+    }
+    console.log("log: loop1: ", loop1)
+    console.log("log: loop2: ", loop2)
+    console.log("log: correct: ", correct)
+    let correctResponse;
+    let incorrectResponse;
+    
+    if(correct) {
+      correctResponse = levelTurns.CorrectResponse;
+      speakOutput = speakOutput + correctResponse;
+      
+      if(levelTurns.Index == 0) {
+        level = level + 1;
+        turn = 1;
+      } else {
+        turn = turn + 1;
+      }
+      sessionAttributes.level = level;
+      sessionAttributes.turn = turn;
+      console.log("log: level: ", level);
+      console.log("log: turn: ", turn);
+      var levelString = level.toString();
+      levelTurns = Assets.levels[levelString][turn-1];
+      console.log("log: levelString: ", levelString);
+      console.log("log: levelTurns: ", levelTurns);
+      speakOutput = speakOutput + levelTurns.Captain;
+    } else {
+      incorrectResponse = levelTurns.IncorrectResponse;
+      speakOutput = speakOutput + incorrectResponse; 
+    }
+
+    sessionAttributes.turn = turn;
+    console.log("log: playerAnswer", playerAnswer);
+    console.log("log: correctAnswerArray", correctAnswerArray);
+    console.log("log: turn", turn);
+    console.log("log: speakOutput", speakOutput);
+
+    var reprompt = "please say again";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
-      .reprompt(requestAttributes.t('HELP_REPROMPT'))
+      .reprompt(reprompt)
       .getResponse();
   },
 };
@@ -233,7 +311,7 @@ const YesHandler = {
   handle(handlerInput) {
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();  
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-   
+    console.log("log: handler YesHandler");
     
     let speakOutput = "";
     var reprompt = "Please shout out the direction";
@@ -242,7 +320,15 @@ const YesHandler = {
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
 
-    speakOutput = speakOutput + Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].Captain;
+    var level = sessionAttributes.level;
+    var levelString = level.toString();
+    var levelTurns = Assets.levels[levelString][turn-1];
+
+    console.log("log: turn: ", turn);
+    console.log("log: levelTurns: ", levelTurns);
+
+    speakOutput = speakOutput + levelTurns.Captain;
+    console.log("log: speakOutput: ", speakOutput);
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -455,32 +541,6 @@ exports.handler = skillBuilder
 // It is organized by language/locale.  You can safely ignore the locales you aren't using.
 // Update the name and messages to align with the theme of your skill
 
-const deData = {
-  translation: {
-    SKILL_NAME: 'Weltraumwissen',
-    GET_FACT_MESSAGE: 'Hier sind deine Fakten: ',
-    HELP_MESSAGE: 'Du kannst sagen, „Nenne mir einen Fakt über den Weltraum“, oder du kannst „Beenden“ sagen... Wie kann ich dir helfen?',
-    HELP_REPROMPT: 'Wie kann ich dir helfen?',
-    FALLBACK_MESSAGE: 'Die Weltraumfakten Skill kann dir dabei nicht helfen. Sie kann dir Fakten über den Raum erzählen, wenn du dannach fragst.',
-    FALLBACK_REPROMPT: 'Wie kann ich dir helfen?',
-    ERROR_MESSAGE: 'Es ist ein Fehler aufgetreten.',
-    STOP_MESSAGE: 'Auf Wiedersehen!',
-    FACTS:
-      [
-        'Ein Jahr dauert auf dem Merkur nur 88 Tage.',
-        'Die Venus ist zwar weiter von der Sonne entfernt, hat aber höhere Temperaturen als Merkur.',
-        'Venus dreht sich entgegen dem Uhrzeigersinn, möglicherweise aufgrund eines früheren Zusammenstoßes mit einem Asteroiden.',
-        'Auf dem Mars erscheint die Sonne nur halb so groß wie auf der Erde.',
-        'Jupiter hat den kürzesten Tag aller Planeten.',
-      ],
-  },
-};
-
-const dedeData = {
-  translation: {
-    SKILL_NAME: 'Weltraumwissen auf Deutsch',
-  },
-};
 
 const enData = {
   translation: {
@@ -505,234 +565,42 @@ const enData = {
 
 const enauData = {
   translation: {
-    SKILL_NAME: 'Australian Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
   },
 };
 
 const encaData = {
   translation: {
-    SKILL_NAME: 'Canadian Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
   },
 };
 
 const engbData = {
   translation: {
-    SKILL_NAME: 'British Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
   },
 };
 
 const eninData = {
   translation: {
-    SKILL_NAME: 'Indian Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
   },
 };
 
 const enusData = {
   translation: {
-    SKILL_NAME: 'American Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
   },
 };
 
-const esData = {
-  translation: {
-    SKILL_NAME: 'Curiosidades del Espacio',
-    GET_FACT_MESSAGE: 'Aquí está tu curiosidad: ',
-    HELP_MESSAGE: 'Puedes decir dime una curiosidad del espacio o puedes decir salir... Cómo te puedo ayudar?',
-    HELP_REPROMPT: 'Como te puedo ayudar?',
-    FALLBACK_MESSAGE: 'La skill Curiosidades del Espacio no te puede ayudar con eso.  Te puede ayudar a descubrir curiosidades sobre el espacio si dices dime una curiosidad del espacio. Como te puedo ayudar?',
-    FALLBACK_REPROMPT: 'Como te puedo ayudar?',
-    ERROR_MESSAGE: 'Lo sentimos, se ha producido un error.',
-    STOP_MESSAGE: 'Adiós!',
-    FACTS:
-        [
-          'Un año en Mercurio es de solo 88 días',
-          'A pesar de estar más lejos del Sol, Venus tiene temperaturas más altas que Mercurio',
-          'En Marte el sol se ve la mitad de grande que en la Tierra',
-          'Jupiter tiene el día más corto de todos los planetas',
-          'El sol es una esféra casi perfecta',
-        ],
-  },
-};
 
-const esesData = {
-  translation: {
-    SKILL_NAME: 'Curiosidades del Espacio para España',
-  },
-};
-
-const esmxData = {
-  translation: {
-    SKILL_NAME: 'Curiosidades del Espacio para México',
-  },
-};
-
-const esusData = {
-  translation: {
-    SKILL_NAME: 'Curiosidades del Espacio para Estados Unidos',
-  },
-};
-
-const frData = {
-  translation: {
-    SKILL_NAME: 'Anecdotes de l\'Espace',
-    GET_FACT_MESSAGE: 'Voici votre anecdote : ',
-    HELP_MESSAGE: 'Vous pouvez dire donne-moi une anecdote, ou, vous pouvez dire stop... Comment puis-je vous aider?',
-    HELP_REPROMPT: 'Comment puis-je vous aider?',
-    FALLBACK_MESSAGE: 'La skill des anecdotes de l\'espace ne peux vous aider avec cela. Je peux vous aider à découvrir des anecdotes sur l\'espace si vous dites par exemple, donne-moi une anecdote. Comment puis-je vous aider?',
-    FALLBACK_REPROMPT: 'Comment puis-je vous aider?',
-    ERROR_MESSAGE: 'Désolé, une erreur est survenue.',
-    STOP_MESSAGE: 'Au revoir!',
-    FACTS:
-        [
-          'Une année sur Mercure ne dure que 88 jours.',
-          'En dépit de son éloignement du Soleil, Vénus connaît des températures plus élevées que sur Mercure.',
-          'Sur Mars, le Soleil apparaît environ deux fois plus petit que sur Terre.',
-          'De toutes les planètes, Jupiter a le jour le plus court.',
-          'Le Soleil est une sphère presque parfaite.',
-        ],
-  },
-};
-
-const frfrData = {
-  translation: {
-    SKILL_NAME: 'Anecdotes françaises de l\'espace',
-  },
-};
-
-const frcaData = {
-  translation: {
-    SKILL_NAME: 'Anecdotes canadiennes de l\'espace',
-  },
-};
-
-const hiData = {
-  translation: {
-    SKILL_NAME: 'अंतरिक्ष facts',
-    GET_FACT_MESSAGE: 'ये लीजिए आपका fact: ',
-    HELP_MESSAGE: 'आप मुझे नया fact सुनाओ बोल सकते हैं या फिर exit भी बोल सकते हैं... आप क्या करना चाहेंगे?',
-    HELP_REPROMPT: 'मैं आपकी किस प्रकार से सहायता कर सकती हूँ?',
-    ERROR_MESSAGE: 'सॉरी, मैं वो समज नहीं पायी. क्या आप repeat कर सकते हैं?',
-    STOP_MESSAGE: 'अच्छा bye, फिर मिलते हैं',
-    FACTS:
-      [
-        'बुध गृह में एक साल में केवल अठासी दिन होते हैं',
-        'सूरज से दूर होने के बावजूद, Venus का तापमान Mercury से ज़्यादा होता हैं',
-        'Earth के तुलना से Mars में सूरज का size तक़रीबन आधा हैं',
-        'सारे ग्रहों में Jupiter का दिन सबसे कम हैं',
-        'सूरज का shape एकदम गेंद आकार में हैं'
-      ],
-  },
-};
-
-const hiinData = {
-  translation: {
-    SKILL_NAME: 'अंतरिक्ष फ़ैक्ट्स',
-  },
-}
-
-const itData = {
-  translation: {
-    SKILL_NAME: 'Aneddoti dallo spazio',
-    GET_FACT_MESSAGE: 'Ecco il tuo aneddoto: ',
-    HELP_MESSAGE: 'Puoi chiedermi un aneddoto dallo spazio o puoi chiudermi dicendo "esci"... Come posso aiutarti?',
-    HELP_REPROMPT: 'Come posso aiutarti?',
-    FALLBACK_MESSAGE: 'Non posso aiutarti con questo. Posso aiutarti a scoprire fatti e aneddoti sullo spazio, basta che mi chiedi di dirti un aneddoto. Come posso aiutarti?',
-    FALLBACK_REPROMPT: 'Come posso aiutarti?',
-    ERROR_MESSAGE: 'Spiacenti, si è verificato un errore.',
-    STOP_MESSAGE: 'A presto!',
-    FACTS:
-      [
-        'Sul pianeta Mercurio, un anno dura solamente 88 giorni.',
-        'Pur essendo più lontana dal Sole, Venere ha temperature più alte di Mercurio.',
-        'Su Marte il sole appare grande la metà che su la terra. ',
-        'Tra tutti i pianeti del sistema solare, la giornata più corta è su Giove.',
-        'Il Sole è quasi una sfera perfetta.',
-      ],
-  },
-};
-
-const ititData = {
-  translation: {
-    SKILL_NAME: 'Aneddoti dallo spazio',
-  },
-};
-
-const jpData = {
-  translation: {
-    SKILL_NAME: '日本語版豆知識',
-    GET_FACT_MESSAGE: '知ってましたか？',
-    HELP_MESSAGE: '豆知識を聞きたい時は「豆知識」と、終わりたい時は「おしまい」と言ってください。どうしますか？',
-    HELP_REPROMPT: 'どうしますか？',
-    ERROR_MESSAGE: '申し訳ありませんが、エラーが発生しました',
-    STOP_MESSAGE: 'さようなら',
-    FACTS:
-      [
-        '水星の一年はたった88日です。',
-        '金星は水星と比べて太陽より遠くにありますが、気温は水星よりも高いです。',
-        '金星は反時計回りに自転しています。過去に起こった隕石の衝突が原因と言われています。',
-        '火星上から見ると、太陽の大きさは地球から見た場合の約半分に見えます。',
-        '木星の<sub alias="いちにち">1日</sub>は全惑星の中で一番短いです。',
-        '天の川銀河は約50億年後にアンドロメダ星雲と衝突します。',
-      ],
-  },
-};
-
-const jpjpData = {
-  translation: {
-    SKILL_NAME: '日本語版豆知識',
-  },
-};
-
-const ptbrData = {
-  translation: {
-    SKILL_NAME: 'Fatos Espaciais',
-  },
-};
-
-const ptData = {
-  translation: {
-    SKILL_NAME: 'Fatos Espaciais',
-    GET_FACT_MESSAGE: 'Aqui vai: ',
-    HELP_MESSAGE: 'Você pode me perguntar por um fato interessante sobre o espaço, ou, fexar a skill. Como posso ajudar?',
-    HELP_REPROMPT: 'O que vai ser?',
-    FALLBACK_MESSAGE: 'A skill fatos espaciais não tem uma resposta para isso. Ela pode contar informações interessantes sobre o espaço, é só perguntar. Como posso ajudar?',
-    FALLBACK_REPROMPT: 'Eu posso contar fatos sobre o espaço. Como posso ajudar?',
-    ERROR_MESSAGE: 'Desculpa, algo deu errado.',
-    STOP_MESSAGE: 'Tchau!',
-    FACTS:
-      [
-        'Um ano em Mercúrio só dura 88 dias.',
-        'Apesar de ser mais distante do sol, Venus é mais quente que Mercúrio.',
-        'Visto de marte, o sol parece ser metade to tamanho que nós vemos da terra.',
-        'Júpiter tem os dias mais curtos entre os planetas no nosso sistema solar.',
-        'O sol é quase uma esfera perfeita.',
-      ],
-  },
-};
 
 // constructs i18n and l10n data structure
 const languageStrings = {
-  'de': deData,
-  'de-DE': dedeData,
   'en': enData,
   'en-AU': enauData,
   'en-CA': encaData,
   'en-GB': engbData,
   'en-IN': eninData,
   'en-US': enusData,
-  'es': esData,
-  'es-ES': esesData,
-  'es-MX': esmxData,
-  'es-US': esusData,
-  'fr': frData,
-  'fr-FR': frfrData,
-  'fr-CA': frcaData,
-  'hi': hiData,
-  'hi-IN': hiinData,
-  'it': itData,
-  'it-IT': ititData,
-  'ja': jpData,
-  'ja-JP': jpjpData,
-  'pt': ptData,
-  'pt-BR': ptbrData,
 };
