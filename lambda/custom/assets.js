@@ -1,5 +1,5 @@
 
-// Response Types: 
+// Response Types:
 export const InteractionTypes = ["Confirmation","Repeat"]
 export const levels = {
     "0":[
@@ -16,6 +16,11 @@ export const levels = {
         {
             "id": 3,
             "Captain":"Sail away!",
+            "ResponseType":"Repeat"
+        },
+        {
+            "id": 4,
+            "Captain": "Get supplies",
             "ResponseType":"Repeat"
         }
     ]

@@ -43,7 +43,7 @@ const GetNewFactHandler = {
 
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island!";
+    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you! <prosody pitch="x-high"> I'll sure try though! </prosody>";
 
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     //const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();	
@@ -334,7 +334,7 @@ const dedeData = {
 
 const enData = {
   translation: {
-    SKILL_NAME: 'Space Facts',
+    SKILL_NAME: 'Pirate Parrot',
     GET_FACT_MESSAGE: 'Here\'s your fact: ',
     HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
     HELP_REPROMPT: 'What can I help you with?',
