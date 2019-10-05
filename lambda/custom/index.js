@@ -294,10 +294,19 @@ const HelpHandler = {
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
    
+    var speakOutput = "";
+    var reprompt = "";
+    if (sessionAttributes.state === "COORDINATES") {
+      speakOutput = "Please repeat what the captain told you";
+      reprompt = "Please repeat what the captain told you";
+    } else if (sessionAttributes.state === "TUTORIAL") {
+      speakOutput = "Please repeat what the captain told you";
+      reprompt = "Please repeat what the captain told you";
+    }
 
     return handlerInput.responseBuilder
-      .speak(HELP_MESSAGE)
-      .reprompt(HELP_MESSAGE)
+      .speak(speakOutput)
+      .reprompt(reprompt)
       .getResponse();
   },
 };
@@ -363,6 +372,24 @@ const FallbackHandler = {
   },
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+  const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+   
+    var speakOutput = "";
+    var reprompt = "";
+
+    var turn = sessionAttributes.turn;
+    var level = sessionAttributes.level;
+    var levelString = level.toString();
+    var levelTurns = Assets.levels[levelString][turn-1];
+
+    if (sessionAttributes.state === "COORDINATES") {
+      speakOutput = "You need to listen, man,";
+      reprompt = "Please repeat what the captain told you";
+    } else if (sessionAttributes.state === "TUTORIAL") {
+      speakOutput = "You need to listen, man,";
+      reprompt = "Please repeat what the captain told you";
+    }
+
     return handlerInput.responseBuilder
       .speak(requestAttributes.t('FALLBACK_MESSAGE'))
       .reprompt(requestAttributes.t('FALLBACK_REPROMPT'))

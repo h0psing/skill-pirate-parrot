@@ -17,6 +17,7 @@ const levels = {
         "CorrectResponse":"Great, you've gotten the crew to raise the anchor",
         "IncorrectResponse":"That's not quite right!  Tell the crew to raise the anchor",
         "ResponseType":"Repeat",
+        "STATE":"TUTORIAL",
         "Index":1
       },
       {
@@ -28,6 +29,7 @@ const levels = {
         "CorrectResponse":"Aye - well done, the sails have been hoisted!",
         "IncorrectResponse":"How are we going to get going with the sails down!  Tell the crew to hoist the sails",
         "ResponseType":"Repeat",
+        "STATE":"TUTORIAL",
         "Index":2
       },
       {
@@ -39,6 +41,7 @@ const levels = {
         "CorrectResponse":"OK - we're sailing away!",
         "IncorrectResponse":"Come on man, tell the crew to set sail!",
         "ResponseType":"Repeat",
+        "STATE":"TUTORIAL",
         "Index":0
       }
     ],
@@ -64,6 +67,7 @@ const levels = {
         "CorrectResponse":"OK - the plan will work!",
         "IncorrectResponse":"We’re doomed! Repeat what I said and we’ll get there in one piece!",
         "ResponseType":"Repeat",
+        "STATE":"COORDINATES",
         "Index":1
       },
       {
@@ -74,6 +78,7 @@ const levels = {
         "CorrectResponse":"Again - the plan will work!",
         "IncorrectResponse":"Again, we’re doomed! Repeat what I said and we’ll get there in one piece!",
         "ResponseType":"Repeat",
+        "STATE":"COORDINATES",
         "Index":2
       },
       {
@@ -83,6 +88,7 @@ const levels = {
                 +"</lang></voice> ",
         "Answer":"COMPLETE",
         "ResponseType":"Repeat",
+        "STATE":"COORDINATES",
         "Index":0
       }
     ]
