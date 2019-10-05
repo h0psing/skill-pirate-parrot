@@ -38,7 +38,7 @@ const GetNewFactHandler = {
     const randomFact = requestAttributes.t('FACTS');
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = "Arghh land lover, welcome to the seven seas.  Let's get to skull island!";
+    speakOutput = '<audio src="soundbank://soundlibrary/animals/amzn_sfx_bear_groan_roar_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island!"";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
