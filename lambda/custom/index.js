@@ -40,7 +40,7 @@ const GetNewFactHandler = {
     const randomFact = requestAttributes.t('FACTS');
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you! <prosody pitch="x-high"> I'll sure try though! </prosody>";
+    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" + "<prosody pitch='x-high'> I'll sure try though! </prosody>";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
