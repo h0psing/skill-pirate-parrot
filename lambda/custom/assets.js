@@ -5,39 +5,60 @@ const challenge = {
     "SKULL_ISLAND":"1",
     "VIRGIN_ISLAND":"2"
   }
+const escalating 
 const levels = {
     "count":2,
     "1":[
       {
         "turn": 1,
-        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
-        +"OK sailor.  Here's your first task.  tell the crew to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"
-        + "</lang></voice> ",
+        "Captain":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "
+                    + "OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"
+                    + "</lang></voice> ",
         "Answer":['raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
-        "CorrectResponse":"Great, you've gotten the crew to raise the anchor",
-        "IncorrectResponse":"That's not quite right!  Tell the crew to raise the anchor",
+        "CorrectResponse": 
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "
+                    +"Great, you've gotten the crew to raise the anchor"+"</lang></voice> ",
+        "IncorrectResponse":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "
+                    +"That's not quite right!  Tell the crew to raise the anchor"
+                    +"</lang></voice> ",
         "ResponseType":"Repeat",
         "Index":1
       },
       {
         "turn": 2,
-        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
-        +"OK sailor.  Here's your second task.  tell the crew to Hoist the sails.  repeat after me, crew Hoist the sails"
-        + "</lang></voice> ",
+        "Captain":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "
+                    +"OK sailor.  Here's your second task.  tell the crew to Hoist the sails.  repeat after me, crew Hoist the sails"
+                    + "</lang></voice> ",
         "Answer":['hoist:horse:horses:voice:voices:what','say:sale:sales:sails:sell:seal:seals'],
-        "CorrectResponse":"Aye - well done, the sails have been hoisted!",
-        "IncorrectResponse":"How are we going to get going with the sails down!  Tell the crew to hoist the sails",
+        "CorrectResponse":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "Aye - well done, the sails have been hoisted!"+
+                    "</lang></voice> ",
+        "IncorrectResponse":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "How are we going to get going with the sails down!  Tell the crew to hoist the sails"+
+                    "</lang></voice> ",
         "ResponseType":"Repeat",
         "Index":2
       },
       {
         "turn": 3,
-        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "
-        +"Here's your third task.  tell the crew to set sail.  Repeat after me, crew set sail"
-        + "</lang></voice> ",
+        "Captain":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "
+                    +"Here's your third task.  tell the crew to set sail.  Repeat after me, crew set sail"
+                    + "</lang></voice> ",
         "Answer":['set:sit','sail:sale:snail:says:say'],
-        "CorrectResponse":"OK - we're sailing away!",
-        "IncorrectResponse":"Come on man, tell the crew to set sail!",
+        "CorrectResponse":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "OK - we're sailing away!"+
+                    "</lang></voice> ",
+        "IncorrectResponse":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "Come on man, tell the crew to set sail!"+
+                    "</lang></voice> ",
         "ResponseType":"Repeat",
         "Index":0
       }
@@ -61,18 +82,25 @@ const levels = {
         + "<s>EAST!</s></prosody> "
         + "</lang></voice> ",
         "Answer":"north east east",
-        "CorrectResponse":"OK - the plan will work!",
-        "IncorrectResponse":"We’re doomed! Repeat what I said and we’ll get there in one piece!",
+        "CorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"OK - the plan will work!"+"</lang></voice> ",
+        "IncorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"We’re doomed! Repeat what I said and we’ll get there in one piece!"+"</lang></voice> ",
         "ResponseType":"Repeat",
         "Index":1
       },
       {
         "turn": 2,
-        "Captain":"<voice name='Russell'><lang xml:lang='en-AU'> "+"We're still not out of the woods. Repeat to the crew, south west south west"
-        + "</lang></voice> ",
+        "Captain":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "We're still not out of the woods. Repeat to the crew, south west south west"
+                    + "</lang></voice> ",
         "Answer":"south west south west",
-        "CorrectResponse":"Again - the plan will work!",
-        "IncorrectResponse":"Again, we’re doomed! Repeat what I said and we’ll get there in one piece!",
+        "CorrectResponse":
+                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "Again - the plan will work!"+
+                    "</lang></voice> ",
+        "IncorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+
+                    "Again, we’re doomed! Repeat what I said and we’ll get there in one piece!"+
+                    "</lang></voice>",
         "ResponseType":"Repeat",
         "Index":2
       },
