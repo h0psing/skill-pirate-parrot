@@ -5,7 +5,7 @@ const challenge = {
     "SKULL_ISLAND":"1",
     "VIRGIN_ISLAND":"2"
   }
-const escalating 
+
 const levels = {
     "count":2,
     "1":[
@@ -15,7 +15,7 @@ const levels = {
                     "<voice name='Russell'><lang xml:lang='en-AU'> "
                     + "OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"
                     + "</lang></voice> ",
-        "Answer":['raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
+        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
         "CorrectResponse": 
                     "<voice name='Russell'><lang xml:lang='en-AU'> "
                     +"Great, you've gotten the crew to raise the anchor"+"</lang></voice> ",
@@ -95,9 +95,9 @@ const levels = {
         "turn": 2,
         "Captain":
                     "<voice name='Russell'><lang xml:lang='en-AU'> "+
-                    "We're still not out of the woods. Repeat to the crew, south west south west"
+                    "We're still not out of the woods. Repeat to the crew, west west south south"
                     + "</lang></voice> ",
-        "Answer":"south west south west",
+        "Answer":"west west south south",
         "CorrectResponse":
                     "<voice name='Russell'><lang xml:lang='en-AU'> "+
                     "Again - the plan will work!"+

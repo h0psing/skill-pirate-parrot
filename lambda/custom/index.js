@@ -67,8 +67,6 @@ const GetNewFactHandler = {
     var turn = sessionAttributes.turn;
     turn = 1;
 
-
-
     console.log("log: Assets.levels", Assets.levels);
     console.log("log: Assets.levels['1']", Assets.levels["1"]);
 
@@ -88,7 +86,6 @@ const GetNewFactHandler = {
 
 	  //SAVE ATTRIBUTES
     //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
-
     //UPDATE PERSISTENT ATTRIBUTES
     //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
 
@@ -150,6 +147,7 @@ const DirectionHandler = {
     var correctAnswer = levelTurns.Answer;
     var correctResponse = levelTurns.CorrectResponse;
     var incorrectResponse = levelTurns.IncorrectResponse;
+    sessionAttributes.state = levelTurns.STATE;
     console.log("log: playerAnswer", playerAnswer);
     console.log("log: correctAnswer", correctAnswer);
 
@@ -183,6 +181,7 @@ const DirectionHandler = {
     }
 
     reprompt = "Please shout out the direction";
+    sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -213,6 +212,7 @@ const RepeatCommandHandler = {
     var count = 0;
     var levelTurns = Assets.levels[levelString][turn-1];
     var correctAnswerArray = levelTurns.Answer;
+    sessionAttributes.state = levelTurns.STATE;
     console.log("log: correctAnswerArray: ", correctAnswerArray)
     console.log("log: playerAnswer: ", playerAnswer)
     var loop1 = false;
@@ -277,6 +277,7 @@ const RepeatCommandHandler = {
     console.log("log: speakOutput", speakOutput);
 
     var reprompt = "please say again";
+    sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -346,7 +347,12 @@ const YesHandler = {
       .getResponse();
   },
 };
-
+const captainSays = (stuff)=>{
+  return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
+};
+const parrotSays = (stuff)=>{
+  return "<prosody pitch='x-high'>"+stuff+" </prosody>";
+};
 const NoHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -355,7 +361,7 @@ const NoHandler = {
   },
   handle(handlerInput) {
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-    var speakOutput = "You said no";
+    var speakOutput = "OK, plase say start to start a game or quit to exit";
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .reprompt(speakOutput)
@@ -382,6 +388,7 @@ const FallbackHandler = {
     var level = sessionAttributes.level;
     var levelString = level.toString();
     var levelTurns = Assets.levels[levelString][turn-1];
+    console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
       speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
@@ -392,8 +399,8 @@ const FallbackHandler = {
     }
 
     return handlerInput.responseBuilder
-      .speak(requestAttributes.t('FALLBACK_MESSAGE'))
-      .reprompt(requestAttributes.t('FALLBACK_REPROMPT'))
+      .speak(speakOutput)
+      .reprompt(speakOutput)
       .getResponse();
   },
 };
