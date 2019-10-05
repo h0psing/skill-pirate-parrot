@@ -5,14 +5,14 @@
       "merge": {},
       "resources": {
         "manifest": {
-          "eTag": "4e662c736ca57c8a533069be8a558c7f"
+          "eTag": "64d5a5f974079974f192a11a762dd287"
         },
         "interactionModel": {
           "de-DE": {
             "eTag": "10d32a6d70e436d5465c044d574739a9"
           },
           "en-AU": {
-            "eTag": "efcac205e1b408d3d6a19f19868c1547"
+            "eTag": "cf579b33fb70fe2a144fd857fb7e7de9"
           },
           "en-GB": {
             "eTag": "3d79a55bcdf61b9846f659d3640cbcd0"
@@ -64,7 +64,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-pirate-parrot",
             "handler": "index.handler",
-            "revisionId": "b16b9cc1-d3a3-4875-bc34-5b6e36cb78aa",
+            "revisionId": "63803836-a3a1-4146-87ff-017c504e4dcc",
             "runtime": "nodejs8.10"
           }
         ]

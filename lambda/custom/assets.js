@@ -1,6 +1,10 @@
 
 // Response Types:
 const InteractionTypes = ["Confirmation","Repeat"]
+const challenge = {
+    "SKULL_ISLAND":"1",
+    "VIRGIN_ISLAND":"2"
+  }
 const levels = {
     "0":[
       {
@@ -30,13 +34,17 @@ const levels = {
         "Captain":"The crew think I know the way. If they know I have the map they’ll kill me. " 
         + "We’ll practice now from above deck, but when the time comes, I’ll tell you the directions from under the deck."
         + "Shout to the imaginary crew North North North!",
-        "Direction":"north south east",
+        "Direction":"north north north",
+        "CorrectResponse":"OK - the plan will work!",
+        "IncorrectResponse":"We’re doomed! Repeat what I said and we’ll get there in one piece!",
         "ResponseType":"Repeat"
       },
       {
         "turn": 2,
-        "Captain":"Hoist the sails",
-        "Direction":"south south",
+        "Captain":"We're still not out of the woods. Repeat to the crew, south west south west",
+        "Direction":"south west south west",
+        "CorrectResponse":"Again - the plan will work!",
+        "IncorrectResponse":"Again, we’re doomed! Repeat what I said and we’ll get there in one piece!",
         "ResponseType":"Repeat"
       },
       {
@@ -58,5 +66,6 @@ const sounds = {
 module.exports = {
     InteractionTypes:InteractionTypes,
     levels:levels,
+    challenge:challenge,
     sounds:sounds
 }

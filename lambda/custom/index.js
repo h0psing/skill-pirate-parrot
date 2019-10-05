@@ -39,30 +39,42 @@ const GetNewFactHandler = {
     // the random item from the array will be selected by the i18next library
     // the i18next library is set up in the Request Interceptor
     const randomFact = requestAttributes.t('FACTS');
-
-
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
 
+    let speakOutput;
 
-    console.log("log: new");
+    var timesAccessed = 1;
 
-    // concatenates a standard message with the random fact
-    var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' 
-    + "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" 
-    + "<prosody pitch='x-high'> I'll try though! </prosody>" 
-    + "Let's get to the coordinates, are you ready to sail the high seas?";
+    if (timesAccessed != 0) {
+      speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
+                    "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
+                    "<prosody pitch='x-high'> I'll try though! </prosody>" 
+                    + "Are you ready to begin?";
+    } else {
+      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. " 
+      + "Listen closely and memorise the directions required to navigate the waters and repeat them back. " 
+      + "Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. " 
+      + "Listen hard, remember the correct instructions, and ignore the cheeky parrot!" 
+    }
 
+    console.log("log: SKILL LAUNCH");
 
-    sessionAttributes.playerName = "John";
-    sessionAttributes.challenge = "SKULL_ISLAND";
-    sessionAttributes.state = "COORDINATES";
+    
 
-    sessionAttributes.turn = 1;
+ 
 
-    var timesAccessed = 0;
+    console.log("log: sessionAttributes: ", sessionAttributes);
+    setSessionState(sessionAttributes);
+    console.log("log: sessionAttributes: ", sessionAttributes);
+
+    var turn = sessionAttributes.turn;
+
+    
+
+    console.log("log: Assets.levels", Assets.levels);
+    console.log("log: Assets.levels['1']", Assets.levels["1"]);
 
     /*
     // REHYDRATE SESSION ATTRIBUTES AFTER RETURNING FROM THE CONNECTIONS DIRECTIVE.
@@ -85,18 +97,11 @@ const GetNewFactHandler = {
     //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
 
     //Modify this to work with the database attributes
-    if (timesAccessed != 0) {
-      speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
-                    "<prosody pitch='x-high'> I'll try though! </prosody>";
-    } else {
-      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. Listen closely and memorise the directions required to navigate the waters and repeat them back. Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
-
-    }
+  
 
     timesAccessed++;
 
-    console.log("log: Assets.levels", Assets.levels);
+
   
     reprompt = "please asay again";
 
@@ -111,6 +116,13 @@ const GetNewFactHandler = {
   },
 };
 
+function setSessionState(sessionAttributes) {
+  sessionAttributes.playerName = "John";
+  sessionAttributes.challenge = "SKULL_ISLAND";
+  sessionAttributes.state = "COORDINATES";
+  sessionAttributes.turn = 1;
+}
+
 const DirectionHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
@@ -119,25 +131,38 @@ const DirectionHandler = {
   },
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+   
+    var challenge = sessionAttributes.challenge;
+    var state = sessionAttributes.state;
+    var turn = sessionAttributes.turn;
+
     console.log("log: ");
     let directionSlot = handlerInput.requestEnvelope.request.intent.slots;
-  var directionResponse = directionSlot.direction['value'];
-    console.log("log: slots", directionResponse);
-<<<<<<< HEAD
-    var speakOutput = "i think you said this, ";// + directionResponse;
+    var playerAnswer = directionSlot.direction['value'].toLowerCase();
+    var correctAnswer = Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].Direction.toLowerCase();
+    var correctResponse = Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].CorrectResponse;
+    var incorrectResponse = Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].IncorrectResponse;
+    console.log("log: playerAnswer", playerAnswer);
+    console.log("log: correctAnswer", correctAnswer);
+
+    let speakOutput;
     
     var correct = false;
-    correct = true;
-    if (correct) {
-      speakOutput = "well done you must be listening";
-    } else {
-      speakOutput = "clean out that junk in your ears";
-    }
+    if (sessionAttributes.state === "COORDINATES") {
+      if(playerAnswer === correctAnswer) {
+        speakOutput = correctResponse;
+        turn = 2;
+        sessionAttributes.turn = turn;
+        speakOutput = speakOutput + Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].Captain;
+      } else {
+        speakOutput = incorrectResponse;
+      }
+    } else if (sessionAttributes.state === "TUTORIAL") {
 
+    }
+    
     reprompt = "Please shout out the direction";
-=======
-    var speakOutput = "i think you said this, " + directionResponse + ". am I right?";
->>>>>>> 5e99954443a53be9a85a653ca51f897791164e73
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -174,6 +199,9 @@ const HelpHandler = {
   },
   handle(handlerInput) {
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+   
+
     return handlerInput.responseBuilder
       .speak(HELP_MESSAGE)
       .reprompt(HELP_MESSAGE)
@@ -188,13 +216,18 @@ const YesHandler = {
       && request.intent.name === 'AMAZON.YesIntent';
   },
   handle(handlerInput) {
-    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-    var speakOutput = "The crew think I know the way. If they know I have the map they’ll kill me."
-     + "We’ll practice now from above deck, but when the time comes, I’ll tell you the directions from under the deck." 
-     + "Shout to the imaginary crew North North North!";
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();  
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+   
+    
+    let speakOutput = "";
+    var reprompt = "Please shout out the direction";
 
-     reprompt = "Please shout out the direction";
+    var challenge = sessionAttributes.challenge;
+    var state = sessionAttributes.state;
+    var turn = sessionAttributes.turn;
 
+    speakOutput = speakOutput + Assets.levels[Assets.challenge["SKULL_ISLAND"]][turn-1].Captain;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
