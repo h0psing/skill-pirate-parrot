@@ -1,0 +1,74 @@
+{
+  "deploy_settings": {
+    "default": {
+      "skill_id": "amzn1.ask.skill.e240892c-f0e7-4758-bf65-c488418cb68b",
+      "merge": {},
+      "resources": {
+        "manifest": {
+          "eTag": "4e662c736ca57c8a533069be8a558c7f"
+        },
+        "interactionModel": {
+          "de-DE": {
+            "eTag": "10d32a6d70e436d5465c044d574739a9"
+          },
+          "en-AU": {
+            "eTag": "2c254f313dde5821b2fe950b647f0b9d"
+          },
+          "en-GB": {
+            "eTag": "3d79a55bcdf61b9846f659d3640cbcd0"
+          },
+          "en-CA": {
+            "eTag": "3d79a55bcdf61b9846f659d3640cbcd0"
+          },
+          "en-US": {
+            "eTag": "3d79a55bcdf61b9846f659d3640cbcd0"
+          },
+          "en-IN": {
+            "eTag": "3d79a55bcdf61b9846f659d3640cbcd0"
+          },
+          "es-MX": {
+            "eTag": "725562efd9f5585bea183d72ba0734c5"
+          },
+          "hi-IN": {
+            "eTag": "53be624d0c7d5186d2624a2d41c75184"
+          },
+          "pt-BR": {
+            "eTag": "4386a2c81be240cfa99007194d46ccb2"
+          },
+          "es-ES": {
+            "eTag": "725562efd9f5585bea183d72ba0734c5"
+          },
+          "fr-CA": {
+            "eTag": "da85bdfed2917c393dad68e17b94fb1b"
+          },
+          "it-IT": {
+            "eTag": "4cdfb7799a1ac96909b3e46186a85ec8"
+          },
+          "es-US": {
+            "eTag": "725562efd9f5585bea183d72ba0734c5"
+          },
+          "ja-JP": {
+            "eTag": "3a404002cd99cdd205072550b9a72fb7"
+          },
+          "fr-FR": {
+            "eTag": "da85bdfed2917c393dad68e17b94fb1b"
+          }
+        },
+        "lambda": [
+          {
+            "alexaUsage": [
+              "custom/default"
+            ],
+            "arn": "arn:aws:lambda:us-east-1:433148507647:function:ask-pirate-parrot",
+            "awsRegion": "us-east-1",
+            "codeUri": "lambda/custom",
+            "functionName": "ask-pirate-parrot",
+            "handler": "index.handler",
+            "revisionId": "3470bb95-d2aa-41d9-9943-9adcc413effb",
+            "runtime": "nodejs8.10"
+          }
+        ]
+      }
+    }
+  }
+}
