@@ -64,7 +64,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-pirate-parrot",
             "handler": "index.handler",
-            "revisionId": "53cefc5f-2f2b-470c-904d-4a790371ce13",
+            "revisionId": "2ef6995c-6e97-46df-b6a7-a9df9cff6da1",
             "runtime": "nodejs8.10"
           }
         ]
