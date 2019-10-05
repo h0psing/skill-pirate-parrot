@@ -48,14 +48,14 @@ const GetNewFactHandler = {
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    captainSays("Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!")+
-                    parrotSays("I'll try though!")+
-                    +captainSays( "Are you ready to begin?");
+                    "<voice name='Russell'><lang xml:lang='en-AU'> Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
+                    "<prosody pitch='x-high'> I'll try though! </prosody> </lang></voice>"
+                    + "Are you ready to begin?";
     } else {
-      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. " 
-      + "Listen closely and memorise the directions required to navigate the waters and repeat them back. " 
-      + "Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. " 
-      + "Listen hard, remember the correct instructions, and ignore the cheeky parrot!" 
+      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. "
+      + "Listen closely and memorise the directions required to navigate the waters and repeat them back. "
+      + "Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. "
+      + "Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
     }
 
     console.log("log: SKILL LAUNCH");
@@ -88,9 +88,14 @@ const GetNewFactHandler = {
     //UPDATE PERSISTENT ATTRIBUTES
     //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
 
+    //Modify this to work with the database attributes
+
+
     timesAccessed++;
 
-    reprompt = "please yes or no to continue";
+
+
+    reprompt = "please asay again";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -119,7 +124,7 @@ const DirectionHandler = {
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-   
+
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
     var level = sessionAttributes.level;
@@ -146,7 +151,7 @@ const DirectionHandler = {
     console.log("log: correctAnswer", correctAnswer);
 
     let speakOutput;
-    
+
     var correct = false;
     if (sessionAttributes.state === "COORDINATES") {
       if(playerAnswer === correctAnswer) {
@@ -173,12 +178,13 @@ const DirectionHandler = {
     } else if (sessionAttributes.state === "TUTORIAL") {
 
     }
-    
+
     reprompt = "Please shout out the direction";
     sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
+      .withSimpleCard(requestAttributes.t('SKILL_NAME'), "Sail the seven seas towards the treasure!")
       .reprompt(reprompt)
       .getResponse();
   },
@@ -238,11 +244,11 @@ const RepeatCommandHandler = {
     console.log("log: correct: ", correct)
     let correctResponse;
     let incorrectResponse;
-    
+
     if(correct) {
       correctResponse = levelTurns.CorrectResponse;
       speakOutput = speakOutput + correctResponse;
-      
+
       if(levelTurns.Index == 0) {
         level = level + 1;
         turn = 1;
@@ -260,7 +266,7 @@ const RepeatCommandHandler = {
       speakOutput = speakOutput + levelTurns.Captain;
     } else {
       incorrectResponse = levelTurns.IncorrectResponse;
-      speakOutput = speakOutput + incorrectResponse; 
+      speakOutput = speakOutput + incorrectResponse;
     }
 
     sessionAttributes.turn = turn;
@@ -313,10 +319,10 @@ const YesHandler = {
       && request.intent.name === 'AMAZON.YesIntent';
   },
   handle(handlerInput) {
-    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();  
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     console.log("log: handler YesHandler");
-    
+
     let speakOutput = "";
     var reprompt = "Please shout out the direction";
 
@@ -373,7 +379,7 @@ const FallbackHandler = {
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-   
+
     var speakOutput = "";
     var reprompt = "";
 
@@ -384,11 +390,19 @@ const FallbackHandler = {
     console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
+<<<<<<< HEAD
       speakOutput = captainSays("Listen up, Scallywag, " + levelTurns.Captain);
       reprompt = "Please repeat what the captain's commands";
     } else if (sessionAttributes.state === "TUTORIAL") {
       speakOutput = captainSays("Listen up man, Scallywag"+ levelTurns.Captain);
       reprompt = "Please repeat what the captain's commands";
+=======
+      speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
+      reprompt = "Please repeat what the captain told you";
+    } else if (sessionAttributes.state === "TUTORIAL") {
+      speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
+      reprompt = "Please repeat what the captain told you";
+>>>>>>> 89fc205a84c3ff730a7250eaad0a46d0094941a6
     }
 
     return handlerInput.responseBuilder
