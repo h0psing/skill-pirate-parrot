@@ -38,6 +38,21 @@
             "give me something"
           ],
           "slots": []
+        },
+        {
+          "name": "RepeatCommandIntent",
+            "slots": [
+                {
+                    "name": "command",
+                    "type": "AMAZON.SearchQuery"
+                }
+            ],
+            "samples": [
+                "ok captain {command}",
+                "yes captain {command}",
+                "i heard {command}",
+                "did you say {command}"
+            ]
         }
       ]
     }

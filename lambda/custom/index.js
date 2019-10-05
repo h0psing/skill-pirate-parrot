@@ -9,8 +9,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
-
-
+ */
 
 //
 // Alexa Fact Skill - Sample for Beginners
@@ -18,9 +17,11 @@
 
 // sets up dependencies
 
-const Queue = require('Queue.js');
+const Queue = require('./Queue.js');
 const Alexa = require('ask-sdk-core');
 const i18n = require('i18next');
+
+const HELP_MESSAGE = "In this game, you’re helping the captain and his crew navigate through perilous waters. Listen closely and memorise the directions required to navigate the waters and repeat them back. Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
 
 // core functionality for fact skill
 const GetNewFactHandler = {
@@ -47,6 +48,27 @@ const GetNewFactHandler = {
       // ask for another fact without first re-opening the skill
       // .reprompt(requestAttributes.t('HELP_REPROMPT'))
       .withSimpleCard(requestAttributes.t('SKILL_NAME'), randomFact)
+      .reprompt('please say again')
+      .getResponse();
+  },
+};
+
+
+const RepeatCommandHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    return request.type === 'IntentRequest'
+      && request.intent.name === 'RepeatCommandIntent';
+  },
+  handle(handlerInput) {
+    const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    console.log("log: ");
+    let command = handlerInput.requestEnvelope.request.intent.slots.command.value;
+    var speakOutput = "i think you said this, " + command;
+
+    return handlerInput.responseBuilder
+      .speak(speakOutput)
+      .reprompt(requestAttributes.t('HELP_REPROMPT'))
       .getResponse();
   },
 };
@@ -58,10 +80,10 @@ const HelpHandler = {
       && request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
-    const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     return handlerInput.responseBuilder
-      .speak(requestAttributes.t('HELP_MESSAGE'))
-      .reprompt(requestAttributes.t('HELP_REPROMPT'))
+      .speak(HELP_MESSAGE)
+      .reprompt(HELP_MESSAGE)
       .getResponse();
   },
 };
@@ -161,6 +183,7 @@ exports.handler = skillBuilder
     GetNewFactHandler,
     HelpHandler,
     ExitHandler,
+    RepeatCommandHandler,
     FallbackHandler,
     SessionEndedRequestHandler,
   )
