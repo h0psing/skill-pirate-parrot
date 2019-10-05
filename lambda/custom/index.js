@@ -43,13 +43,13 @@ const GetNewFactHandler = {
 
     // concatenates a standard message with the random fact
     var speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
-    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arghh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" + "<prosody pitch='x-high'> I'll sure try though! </prosody>";
+    speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' + "Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" + "<prosody pitch='x-high'> I'll try though! </prosody>";
 
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-    //const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();	
+    //const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
-  
-    
+
+
     var timesAccessed = 0;
     /*
     // REHYDRATE SESSION ATTRIBUTES AFTER RETURNING FROM THE CONNECTIONS DIRECTIVE.
@@ -64,7 +64,7 @@ const GetNewFactHandler = {
       }
     }
     */
-	
+
 	  //SAVE ATTRIBUTES
     //handlerInput.attributesManager.setSessionAttributes(sessionAttributes);
 
@@ -211,11 +211,11 @@ const LocalizationInterceptor = {
 
 
 
-  
+
 
 const ResponsePersistenceInterceptor = {
   process(handlerInput, responseOutput) {
-      
+
           //let sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
           //sessionAttributes['lastUseTimestamp'] = new Date(handlerInput.requestEnvelope.request.timestamp).getTime();
