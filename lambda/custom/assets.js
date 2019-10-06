@@ -59,7 +59,7 @@ const levels = {
                     "</lang></voice> ",
         "IncorrectResponse":
                     "<voice name='Russell'><lang xml:lang='en-AU'> "+
-                    "Come on landlubber, tell the crew to set sail!"+
+                    "Come on man, tell the crew to set sail!"+
                     "</lang></voice> ",
         "ResponseType":"Repeat",
         "STATE":"TUTORIAL",
@@ -76,18 +76,18 @@ const levels = {
         + "<s>We’ll practice now up here, "
         + "<prosody volume='x-soft'>but when the time comes,</prosody> "
         + "I’ll look at the map below, shout directions up to you.</s> "
-        + "<break time='1s'/> "
+        + "<break time='3s'/> "
         + "<s>Right....</s> "
         + "<s>Repeat after me LOUDLY!</s> "
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
-        + "<prosody pitch='x-high'> EAST! </prosody>"
-        + "<prosody pitch='x-high'> WEST! </prosody>"
+        + "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>"+ "<prosody pitch='x-fast'>" + "EAST!" + "</prosody>" + "</prosody>" + "</lang></voice>"
+        + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>""
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
-        + "<prosody pitch='x-high'> SOUTH! </prosody>"
+        + "<prosody pitch='+50%'> SOUTH! </prosody> </lang></voice>"
         + "</lang></voice> ",
-        "Answer":"north east south",
+        "Answer":"north east east",
         "CorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"OK - the plan will work!"+"</lang></voice> ",
         "IncorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"We’re doomed! Repeat what I said and we’ll get there in one piece!"+"</lang></voice> ",
         "ResponseType":"Repeat",
