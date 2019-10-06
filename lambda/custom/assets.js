@@ -11,7 +11,7 @@ const challenge = {
   };
 
   const captainSaysLoudly = (stuff)=>{
-    return "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume='x-loud'>"  + stuff + "</prosody>" + "</lang></voice> ";
+    return "<voice name='Amy'><lang xml:lang='en-AU'> <prosody volume='x-loud'>"  + stuff + "</prosody>" + "</lang></voice> ";
   };
 
   const parrotSays = (stuff)=>{
@@ -23,8 +23,9 @@ const levels = {
       {
         "turn": 1,
         "Captain":
-            captainSays("OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"),
-        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca:Bianca:bianca'],
+            captainSays("<say-as interpret-as='interjection'>all righty</say-as>. <s>Ready up to learn pirate.</s> <s>Don’t let Parrot confuse you!</s>"
+                        + "<break time='0.5s'/><s>We need to raise the anchor:</s> <s>Shout, Crew The anchor!</s>"),
+        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca'],
         "CorrectResponse":
                     captainSays("Great, you've gotten the crew to raise the anchor"),
         "IncorrectResponse":
