@@ -74,15 +74,15 @@ const levels = {
       {
         "turn": 1,
         "Captain":captainSays(
-          + "<s>The crew think I know the way...</s> "
-          + "<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
-          + "they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
-          + "<s>We’ll practice now up here, "
-          + "<prosody volume='x-soft'>but when the time comes,</prosody> "
-          + "I’ll look at the map below, shout directions up to you.</s> "
-          + "<break time='3s'/> "
-          + "<s>Right....</s> "
-          + "<s>Repeat after me LOUDLY!</s> "
+            "<s>The crew think I know the way...</s>"
+            +"<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
+            +"they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
+            +"<s>We’ll practice now up here, "
+            +"<prosody volume='x-soft'>but when the time comes,</prosody> "
+            +"I’ll look at the map below, shout directions up to you.</s> "
+            +"<break time='3s'/> "
+            +"<s>Right....</s> "
+            +"<s>Repeat after me LOUDLY!</s> "
         )
         + captainSaysLoudly("NORTH")
         + parrotSays("EAST!")
