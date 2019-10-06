@@ -24,10 +24,10 @@ const levels = {
         "turn": 1,
         "Captain":
             captainSays("<say-as interpret-as='interjection'>all righty</say-as>. <s>Ready up to learn pirate.</s> <s>Don’t let Parrot confuse you!</s>"
-                        + "<break time='0.5s'/><s>We need to raise the anchor:</s> <s>Shout, Crew The anchor!</s>"),
+                        + "<break time='0.5s'/><s>We need to raise the anchor:</s> <s>Shout, Crew raise the anchor!</s>"),
         "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca'],
         "CorrectResponse":
-                    captainSays("Great, you've gotten the crew to raise the anchor"),
+                    captainSays("<audio src='soundbank://soundlibrary/boats_ships/anchors/anchor_04'/> Great, you've gotten the crew to raise the anchor"),
         "IncorrectResponse":
                     captainSays("That's not quite right!  Tell the crew to raise the anchor"),
         "ResponseType":"Repeat",
@@ -60,7 +60,7 @@ const levels = {
         "Answer":['set:sit','sail:sale:snail:says:say'],
         "CorrectResponse":
                     captainSays(
-                    "OK - we're sailing away!"
+                    "OK - we're sailing away! <audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_02'/>"
                     ),
         "IncorrectResponse":
                     captainSays(
@@ -78,7 +78,7 @@ const levels = {
             "<s>The crew think I know the way...</s>"
             +"<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
             +"they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
-            +"<s>We’ll practice now up here, "
+            +"<s>We’ll practice now, up here, "
             +"<prosody volume='x-soft'>but when the time comes,</prosody> "
             +"I’ll look at the map below, shout directions up to you.</s> "
             +"<break time='3s'/> "
@@ -101,7 +101,7 @@ const levels = {
       {
         "turn": 2,
         "Captain":
-                    captainSays("We're still not out of the woods. Repeat to the crew west")+
+                    captainSays("We're still not out of the woods. Repeat to the crew,")+
                     parrotSays("SOUTH!")+
                     captainSays("WEST ")+
                     captainSays("WEST ")+
@@ -122,7 +122,7 @@ const levels = {
       {
         "turn": 3,
         "Captain":"<audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> "
-                +captainSays("land ahoy. you've made it to skull island!"
+                +captainSays("land ahoy. you've made it to skull island! your first voyage is complete,"
                 ),
         "Answer":"COMPLETE",
         "ResponseType":"Repeat",
