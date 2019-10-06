@@ -24,7 +24,7 @@ const levels = {
         "turn": 1,
         "Captain":
             captainSays("OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"),
-        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
+        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca'],
         "CorrectResponse":
                     captainSays("Great, you've gotten the crew to raise the anchor"),
         "IncorrectResponse":
@@ -74,15 +74,15 @@ const levels = {
       {
         "turn": 1,
         "Captain":captainSays(
-          + "<s>The crew think I know the way...</s> "
-          + "<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
-          + "they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
-          + "<s>We’ll practice now up here, "
-          + "<prosody volume='x-soft'>but when the time comes,</prosody> "
-          + "I’ll look at the map below, shout directions up to you.</s> "
-          + "<break time='3s'/> "
-          + "<s>Right....</s> "
-          + "<s>Repeat after me LOUDLY!</s> "
+            "<s>The crew think I know the way...</s>"
+            +"<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
+            +"they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
+            +"<s>We’ll practice now up here, "
+            +"<prosody volume='x-soft'>but when the time comes,</prosody> "
+            +"I’ll look at the map below, shout directions up to you.</s> "
+            +"<break time='3s'/> "
+            +"<s>Right....</s> "
+            +"<s>Repeat after me LOUDLY!</s> "
         )
         + captainSaysLoudly("NORTH")
         + parrotSays("EAST!")
@@ -104,7 +104,6 @@ const levels = {
                     captainSays("We're still not out of the woods. Repeat to the crew west")+
                     parrotSays("SOUTH!")+
                     captainSays("west")+
-                    parrotSays("SOUTH! WEST!")+
                     captainSays("south")+
                     parrotSays("North")+
                     captainSays("south"),
