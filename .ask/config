@@ -12,7 +12,7 @@
             "eTag": "10d32a6d70e436d5465c044d574739a9"
           },
           "en-AU": {
-            "eTag": "2b5ea19f310df89f5c7b8d490b477a2f"
+            "eTag": "101d33070794b003c8b48888840a180c"
           },
           "en-GB": {
             "eTag": "3d79a55bcdf61b9846f659d3640cbcd0"
@@ -64,7 +64,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-pirate-parrot",
             "handler": "index.handler",
-            "revisionId": "5acb1b73-f3ed-43bc-a681-eb007693c945",
+            "revisionId": "f8e7ba39-7fc5-4928-b57d-7e5c2dbba5b3",
             "runtime": "nodejs8.10"
           }
         ]

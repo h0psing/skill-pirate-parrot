@@ -24,7 +24,7 @@ const levels = {
         "turn": 1,
         "Captain":
             captainSays("OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"),
-        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca'],
+        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca:Bianca:bianca'],
         "CorrectResponse":
                     captainSays("Great, you've gotten the crew to raise the anchor"),
         "IncorrectResponse":
@@ -84,14 +84,13 @@ const levels = {
             +"<s>Right....</s> "
             +"<s>Repeat after me LOUDLY!</s> "
         )
-        + captainSaysLoudly("NORTH")
-        + parrotSays("EAST!")
-        + parrotSays("WEST!")
         + captainSaysLoudly("EAST")
+        + parrotSays("SOUTH WEST")
+        + captainSaysLoudly("NORTH")
         + parrotSays("WEST!")
         + captainSaysLoudly("NORTH")
         + parrotSays("NORTH!"),
-        "Answer":"north east south",
+        "Answer":"east north north",
         "CorrectResponse":captainSays("OK - the plan will work!"),
         "IncorrectResponse":captainSays("We’re doomed! Repeat what I said and we’ll get there in one piece!"),
         "ResponseType":"Repeat",
@@ -103,10 +102,10 @@ const levels = {
         "Captain":
                     captainSays("We're still not out of the woods. Repeat to the crew west")+
                     parrotSays("SOUTH!")+
-                    captainSays("west")+
-                    captainSays("south")+
+                    captainSays("WEST ")+
+                    captainSays("WEST ")+
                     parrotSays("North")+
-                    captainSays("south"),
+                    captainSays("SOUTH SOUTH"),
         "Answer":"west west south south",
         "CorrectResponse":
                     captainSays(

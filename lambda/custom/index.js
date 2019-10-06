@@ -165,7 +165,13 @@ const DirectionHandler = {
           console.log("log: challengeComplete");
           turn = 0;
           sessionAttributes.turn = 0;
-          speakOutput = speakOutput + levelTurns.Captain;
+          speakOutput = speakOutput + captainSays("Land ahoy, we've made it to skull island! Congratulations, your first voyage is complete, ");
+
+          return handlerInput.responseBuilder
+          .speak(speakOutput)
+          .withSimpleCard(requestAttributes.t('SKILL_NAME'), "Sail the seven seas towards the treasure!")
+          .getResponse();
+        
         } else {
           console.log("log: challenge in progress");
           speakOutput = correctResponse;
@@ -190,7 +196,7 @@ const DirectionHandler = {
 
     }
 
-    reprompt = captainSays("Please shout out the direction");
+    reprompt = captainSays("Please listen to the captains instructions");
     sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder

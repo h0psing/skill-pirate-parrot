@@ -30,10 +30,10 @@
         {
           "name": "GetNewFactIntent",
           "samples": [
-            "a fact",
-            "a space fact",
-            "tell me a fact",
-            "tell me a space fact"
+            "start again",
+            "start new game",
+            "start another game",
+            "start"
           ],
           "slots": []
         },
