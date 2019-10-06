@@ -121,7 +121,7 @@ const levels = {
       {
         "turn": 3,
         "Captain":"<audio src='soundbank://soundlibrary/boats_ships/wood_boat/wood_boat_01'/> "
-                +captainSays("land ahoy. you've made it to skull island"
+                +captainSays("land ahoy. you've made it to skull island!"
                 ),
         "Answer":"COMPLETE",
         "ResponseType":"Repeat",
