@@ -49,8 +49,9 @@ const GetNewFactHandler = {
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    narratorSays("Infamous Captain SharkTooth<emphasis level='moderate'> is eager for gold</emphasis> <break time='0.5s'/> She anchored her ship in Secret Bay,<break time='1s'/> You have agreed to help her to navigate through dangerous unknown waters for a cut of some treasure.<break time='1s'/> <emphasis level='strong'>Be careful</emphasis>to pass her instruction for the pirate crew <break time='1s'/> <emphasis level='moderate'> because one mistake </emphasis> can wreck the ship <break time='0.3s'/> or cost your life.") +
-                    parrotSays(" I'll try though! ") +
+                    narratorSays("Infamous Captain SharkTooth<emphasis level='moderate'> is eager for gold</emphasis> <break time='0.5s'/> She anchored her ship in Secret Bay,<break time='1s'/> You have agreed to help her to navigate through dangerous unknown waters for a cut of some treasure.<break time='1s'/> " +
+                     "<emphasis level='strong'>Be careful</emphasis>to pass her instruction for the pirate crew <break time='1s'/> <emphasis level='moderate'> because one mistake </emphasis> can wreck the ship <break time='0.3s'/> or cost your life.") +
+                    //parrotSays(" I'll try though! ") +
                     captainSays("Are you ready to begin?");
     } else {
       speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. "
