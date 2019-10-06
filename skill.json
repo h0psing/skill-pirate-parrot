@@ -5,9 +5,9 @@
         "en-AU": {
           "summary": "Sail the seven seas.",
           "examplePhrases": [
-            "Alexa open pirate parrot",
-            "Alexa start pirate parrot",
-            "Alexa play pirate parrot"
+            "Alexa open pirate island",
+            "Alexa start pirate island",
+            "Alexa play pirate island"
           ],
           "keywords": [
             "pirate",
@@ -15,8 +15,8 @@
             "memory",
             "brain training"
           ],
-          "name": "Pirate Parrot",
-          "description": "Pirate Parrot.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
+          "name": "Pirate Island",
+          "description": "Pirate Island.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
           "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
           "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
         },
@@ -32,7 +32,7 @@
             "facts",
             "trivia"
           ],
-          "name": "Pirate Parrot",
+          "name": "Pirate Island",
           "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
           "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
           "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
@@ -49,7 +49,7 @@
             "facts",
             "trivia"
           ],
-          "name": "Pirate Parrot",
+          "name": "Pirate Island",
           "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
           "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
           "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
@@ -66,7 +66,7 @@
             "facts",
             "trivia"
           ],
-          "name": "Pirate Parrot",
+          "name": "Pirate Island",
           "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
           "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
           "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 
@@ -83,7 +83,7 @@
             "facts",
             "trivia"
           ],
-          "name": "Pirate Parrot",
+          "name": "Pirate Island",
           "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\"",
           "smallIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-108px.png",
           "largeIconUri": "https://fivefifteen.s3.amazonaws.com/pirate-parrot/pirate-parrot-512px.png" 

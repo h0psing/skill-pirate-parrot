@@ -38,7 +38,6 @@ const GetNewFactHandler = {
     // gets a random fact by assigning an array to the variable
     // the random item from the array will be selected by the i18next library
     // the i18next library is set up in the Request Interceptor
-    const randomFact = requestAttributes.t('FACTS');
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
@@ -49,14 +48,14 @@ const GetNewFactHandler = {
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    captainSays("Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!")+
-                    parrotSays("I'll try though!")+
-                    +captainSays( "Are you ready to begin?");
+                    "<voice name='Russell'><lang xml:lang='en-AU'> Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
+                    "<prosody pitch='x-high'> I'll try though! </prosody> </lang></voice>"
+                    + "Are you ready to begin?";
     } else {
-      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. " 
-      + "Listen closely and memorise the directions required to navigate the waters and repeat them back. " 
-      + "Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. " 
-      + "Listen hard, remember the correct instructions, and ignore the cheeky parrot!" 
+      speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. "
+      + "Listen closely and memorise the directions required to navigate the waters and repeat them back. "
+      + "Beware though, the Pirate’s Parrot is cheeky, and will try to confuse you by offering wrong directions. "
+      + "Listen hard, remember the correct instructions, and ignore the cheeky parrot!"
     }
 
     console.log("log: SKILL LAUNCH");
@@ -89,9 +88,14 @@ const GetNewFactHandler = {
     //UPDATE PERSISTENT ATTRIBUTES
     //handlerInput.attributesManager.setPersistentAttributes(sessionAttributes);
 
+    //Modify this to work with the database attributes
+
+
     timesAccessed++;
 
-    reprompt = "please yes or no to continue";
+
+
+    reprompt = "please asay again";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -120,7 +124,7 @@ const DirectionHandler = {
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-   
+
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
     var level = sessionAttributes.level;
@@ -147,7 +151,7 @@ const DirectionHandler = {
     console.log("log: correctAnswer", correctAnswer);
 
     let speakOutput;
-    
+
     var correct = false;
     if (sessionAttributes.state === "COORDINATES") {
       if(playerAnswer === correctAnswer) {
@@ -174,12 +178,13 @@ const DirectionHandler = {
     } else if (sessionAttributes.state === "TUTORIAL") {
 
     }
-    
+
     reprompt = "Please shout out the direction";
     sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
+      .withSimpleCard(requestAttributes.t('SKILL_NAME'), "Sail the seven seas towards the treasure!")
       .reprompt(reprompt)
       .getResponse();
   },
@@ -239,11 +244,11 @@ const RepeatCommandHandler = {
     console.log("log: correct: ", correct)
     let correctResponse;
     let incorrectResponse;
-    
+
     if(correct) {
       correctResponse = levelTurns.CorrectResponse;
       speakOutput = speakOutput + correctResponse;
-      
+
       if(levelTurns.Index == 0) {
         level = level + 1;
         turn = 1;
@@ -261,7 +266,7 @@ const RepeatCommandHandler = {
       speakOutput = speakOutput + levelTurns.Captain;
     } else {
       incorrectResponse = levelTurns.IncorrectResponse;
-      speakOutput = speakOutput + incorrectResponse; 
+      speakOutput = speakOutput + incorrectResponse;
     }
 
     sessionAttributes.turn = turn;
@@ -314,10 +319,10 @@ const YesHandler = {
       && request.intent.name === 'AMAZON.YesIntent';
   },
   handle(handlerInput) {
-    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();  
+    //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     console.log("log: handler YesHandler");
-    
+
     let speakOutput = "";
     var reprompt = "Please shout out the direction";
 
@@ -374,7 +379,7 @@ const FallbackHandler = {
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-   
+
     var speakOutput = "";
     var reprompt = "";
 
@@ -385,11 +390,12 @@ const FallbackHandler = {
     console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
-      speakOutput = "You need to listen, man, " + levelTurns.Captain;
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
+      + levelTurns.Captain + " </prosody volume> ");
       reprompt = "Please repeat what the captain told you";
     } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = "You need to listen, man, "+ levelTurns.Captain;
-      reprompt = "Please repeat what the captain told you";
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
+      + levelTurns.Captain + " </prosody volume> ");      reprompt = "Please repeat what the captain told you";
     }
 
     return handlerInput.responseBuilder
@@ -573,52 +579,43 @@ exports.handler = skillBuilder
 
 const enData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
-    GET_FACT_MESSAGE: 'Here\'s your fact: ',
-    HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
-    HELP_REPROMPT: 'What can I help you with?',
-    FALLBACK_MESSAGE: 'The Space Facts skill can\'t help you with that.  It can help you discover facts about space if you say tell me a space fact. What can I help you with?',
-    FALLBACK_REPROMPT: 'What can I help you with?',
+    SKILL_NAME: 'Pirate Island',
+    HELP_MESSAGE: 'You need to listen to the captains instructions or say quit to walk the plank',
+    HELP_REPROMPT: 'Are you ready to quit and walk the plank?',
+    FALLBACK_MESSAGE: 'You need to listen to the captains instructions or say quit to walk the plank',
+    FALLBACK_REPROMPT: 'Are you ready to quit and walk the plank?',
     ERROR_MESSAGE: 'Sorry, an error occurred.',
-    STOP_MESSAGE: 'Goodbye!',
-    FACTS:
-      [
-        'A year on Mercury is just 88 days long.',
-        'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
-        'On Mars, the Sun appears about half the size as it does on Earth.',
-        'Jupiter has the shortest day of all the planets.',
-        'The Sun is an almost perfect sphere.',
-      ],
+    STOP_MESSAGE: '<speak><say-as interpret-as="interjection">ahoy matey</say-as></speak>',
   },
 };
 
 const enauData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const encaData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const engbData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const eninData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const enusData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
