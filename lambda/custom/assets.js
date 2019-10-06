@@ -23,8 +23,8 @@ const levels = {
       {
         "turn": 1,
         "Captain":
-            captainSays("<say-as interpret-as='interjection'>all righty</say-as>. <s>Ready up to learn pirate.</s> <s>Don’t let Parrot confuse you!</s>"
-                        + "<break time='0.5s'/><s>We need to raise the anchor:</s> <s>Shout, Crew raise the anchor!</s>"),
+            captainSays("<say-as interpret-as='interjection'>all righty</say-as>. <s>Ready up to learn pirate.</s> <s>Don’t let my Parrot confuse you!</s>"
+                        + "<break time='0.5s'/><s>We need to raise the anchor:</s> <s>Shout, Crew The anchor!</s>"),
         "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca'],
         "CorrectResponse":
                     captainSays("<audio src='soundbank://soundlibrary/boats_ships/anchors/anchor_04'/> Great, you've gotten the crew to raise the anchor"),
@@ -37,7 +37,8 @@ const levels = {
       {
         "turn": 2,
         "Captain":
-            captainSays("OK sailor.  Here's your second task.  tell the crew to Hoist the sails.  repeat after me, crew Hoist the sails"),
+            captainSays("<s>Let's set the sails!</s> + <s>Shout crew!</s> + <break time='0.5s'/> + <prosody volume='x-loud'><emphasis level='strong'>"
+                        + "Crew! Raise The SAILS! </emphasis></prosody>"),
         "Answer":['hoist:horse:horses:voice:voices:what','say:sale:sales:sails:sell:seal:seals'],
         "CorrectResponse":
                     captainSays(
