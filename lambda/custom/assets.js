@@ -7,11 +7,11 @@ const challenge = {
   }
 
   const captainSays = (stuff)=>{
-    return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
+    return "<voice name='Amy'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
   };
 
   const captainSaysLoudly = (stuff)=>{
-    return "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume='x-loud'>"  + stuff + "</prosody>" + "</lang></voice> ";
+    return "<voice name='Amy'><lang xml:lang='en-AU'> <prosody volume='x-loud'>"  + stuff + "</prosody>" + "</lang></voice> ";
   };
 
   const parrotSays = (stuff)=>{
