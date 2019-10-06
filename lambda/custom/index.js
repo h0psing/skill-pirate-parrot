@@ -176,7 +176,7 @@ const DirectionHandler = {
       } else {
         console.log("log: incorrect direction");
         speakOutput = incorrectResponse;
-        
+
         errorCount = errorCount + 1;
         sessionAttributes.errorCount = errorCount;
 
@@ -219,7 +219,7 @@ const RepeatCommandHandler = {
     let playerAnswer = handlerInput.requestEnvelope.request.intent.slots.command.value;
     var speakOutput = "";
     var errorCount = sessionAttributes.errorCount;
-    
+
     var levelTurns = Assets.levels[levelString][turn-1];
     var correctAnswerArray = levelTurns.Answer;
     sessionAttributes.state = levelTurns.STATE;
@@ -367,7 +367,7 @@ const captainSays = (stuff)=>{
   return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
 };
 const parrotSays = (stuff)=>{
-  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>" + stuff + "</prosody>"+ "</lang></voice> ";
+  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high' rate='x-fast'>" + stuff + "</prosody>"+ "</lang></voice> ";
 };
 const NoHandler = {
   canHandle(handlerInput) {
