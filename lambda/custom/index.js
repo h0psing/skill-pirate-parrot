@@ -366,7 +366,7 @@ const captainSays = (stuff)=>{
   return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
 };
 const parrotSays = (stuff)=>{
-  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>"+stuff+" </prosody>"+ "</lang></voice> ";
+  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>" +"<prosody pitch='x-fast'>" + stuff + "</prosody>"+ "</prosody>"+ "</lang></voice> ";
 };
 const NoHandler = {
   canHandle(handlerInput) {
@@ -410,12 +410,12 @@ const FallbackHandler = {
     console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
-      speakOutput = captainSays("You need to listen, Scallywag!" 
-      + levelTurns.Captain);
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!"
+      + levelTurns.Captain + " </prosody volume> ");
       reprompt = "Please repeat what the captain told you";
     } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = captainSays("You need to listen, Scallywag!" 
-      + levelTurns.Captain);   
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!"
+      + levelTurns.Captain + " </prosody volume> ");
       reprompt = "Please repeat what the captain told you";
     }
 
