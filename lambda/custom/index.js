@@ -38,7 +38,6 @@ const GetNewFactHandler = {
     // gets a random fact by assigning an array to the variable
     // the random item from the array will be selected by the i18next library
     // the i18next library is set up in the Request Interceptor
-    const randomFact = requestAttributes.t('FACTS');
     //const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
     const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
     //const persistentAttributes = await handlerInput.attributesManager.getPersistentAttributes();
@@ -391,11 +390,12 @@ const FallbackHandler = {
     console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
-      speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
+      + levelTurns.Captain + " </prosody volume> ");
       reprompt = "Please repeat what the captain told you";
     } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
-      reprompt = "Please repeat what the captain told you";
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
+      + levelTurns.Captain + " </prosody volume> ");      reprompt = "Please repeat what the captain told you";
     }
 
     return handlerInput.responseBuilder
@@ -579,52 +579,43 @@ exports.handler = skillBuilder
 
 const enData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
-    GET_FACT_MESSAGE: 'Here\'s your fact: ',
-    HELP_MESSAGE: 'You can say tell me a space fact, or, you can say exit... What can I help you with?',
-    HELP_REPROMPT: 'What can I help you with?',
-    FALLBACK_MESSAGE: 'The Space Facts skill can\'t help you with that.  It can help you discover facts about space if you say tell me a space fact. What can I help you with?',
-    FALLBACK_REPROMPT: 'What can I help you with?',
+    SKILL_NAME: 'Pirate Island',
+    HELP_MESSAGE: 'You need to listen to the captains instructions or say quit to walk the plank',
+    HELP_REPROMPT: 'Are you ready to quit and walk the plank?',
+    FALLBACK_MESSAGE: 'You need to listen to the captains instructions or say quit to walk the plank',
+    FALLBACK_REPROMPT: 'Are you ready to quit and walk the plank?',
     ERROR_MESSAGE: 'Sorry, an error occurred.',
-    STOP_MESSAGE: 'Goodbye!',
-    FACTS:
-      [
-        'A year on Mercury is just 88 days long.',
-        'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
-        'On Mars, the Sun appears about half the size as it does on Earth.',
-        'Jupiter has the shortest day of all the planets.',
-        'The Sun is an almost perfect sphere.',
-      ],
+    STOP_MESSAGE: '<speak><say-as interpret-as="interjection">ahoy matey</say-as></speak>',
   },
 };
 
 const enauData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const encaData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const engbData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const eninData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
 const enusData = {
   translation: {
-    SKILL_NAME: 'Pirate Parrot',
+    SKILL_NAME: 'Pirate Island',
   },
 };
 
