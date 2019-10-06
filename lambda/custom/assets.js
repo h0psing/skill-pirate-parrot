@@ -98,7 +98,7 @@ const levels = {
         "turn": 2,
         "Captain":
                     "<voice name='Russell'><lang xml:lang='en-AU'> "+
-                    "We're still not out of the woods. Repeat to the crew, west west south south"
+                    "We're still not out of the woods. Repeat to the crew, west <prosody pitch='x-high'> SOUTH! </prosody> west <prosody pitch='x-high'> SOUTH! </prosody> <prosody pitch='x-high'> WEST! </prosody> south <prosody pitch='x-high'> NORTH! </prosody> south"
                     + "</lang></voice> ",
         "Answer":"west west south south",
         "CorrectResponse":
