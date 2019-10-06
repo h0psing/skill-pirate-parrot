@@ -160,6 +160,7 @@ const DirectionHandler = {
         console.log("log: correct direction");
         console.log("log: turn: ", turn);
         console.log("log: levelTurns: ", levelTurns);
+        sessionAttributes.errorCount = 0;
         if (turn === levelTurns.length) {
           console.log("log: challengeComplete");
           turn = 0;
@@ -180,7 +181,7 @@ const DirectionHandler = {
         errorCount = errorCount + 1;
         sessionAttributes.errorCount = errorCount;
 
-        if (errorCount >= 2) {
+        if (errorCount > 2) {
           speakOutput = captainSays("<audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_boo_01'/> You'll walk the plank, ya scullywag! <audio src='soundbank://soundlibrary/water/bow_wash/bow_wash_02'/>");
           sessionAttributes.errorCount = 0;
         }
@@ -275,12 +276,13 @@ const RepeatCommandHandler = {
       console.log("log: levelString: ", levelString);
       console.log("log: levelTurns: ", levelTurns);
       speakOutput = speakOutput + levelTurns.Captain;
+      sessionAttributes.errorCount = 0;
     } else {
       incorrectResponse = levelTurns.IncorrectResponse;
       speakOutput = speakOutput + incorrectResponse;
       errorCount = errorCount + 1;
       sessionAttributes.errorCount = errorCount;
-      if (errorCount >= 2) {
+      if (errorCount > 2) {
         speakOutput = captainSays(" <audio src='soundbank://soundlibrary/sports/crowds/crowds_01'/> You'll walk the plank, ya scullywag! <audio src='soundbank://soundlibrary/water/bow_wash/bow_wash_02'/>");
         sessionAttributes.errorCount = 0;
       }

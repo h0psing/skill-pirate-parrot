@@ -18,7 +18,7 @@ const levels = {
         "turn": 1,
         "Captain":
             captainSays("OK sailor.  Here's your first task.  tell the crew, to Raise the anchor.  As you're a newbie, repeat after me, crew raise the anchor"),
-        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca'],
+        "Answer":['racing:raise:rise:ray:raising','anchor:ankle:enter:car:yanker:inca:Inca'],
         "CorrectResponse":
                     captainSays("Great, you've gotten the crew to raise the anchor"),
         "IncorrectResponse":
@@ -80,7 +80,7 @@ const levels = {
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
         + "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high' rate='fast'>" + "EAST!" + "</prosody>" + "</lang></voice>"
-        + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>"
+        + " WEST!  </lang></voice>"
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
         + "<prosody pitch='x-high'> SOUTH! </prosody>"
@@ -98,7 +98,6 @@ const levels = {
                     captainSays("We're still not out of the woods. Repeat to the crew west")+
                     parrotSays("SOUTH!")+
                     captainSays("west")+
-                    parrotSays("SOUTH! WEST!")+
                     captainSays("south")+
                     parrotSays("North")+
                     captainSays("south"),
