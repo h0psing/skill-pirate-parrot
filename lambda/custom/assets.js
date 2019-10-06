@@ -53,7 +53,7 @@ const levels = {
         "Answer":['set:sit','sail:sale:snail:says:say'],
         "CorrectResponse":
                     captainSays(
-                    "OK - we're sailing away!"+
+                    "OK - we're sailing away!"
                     ),
         "IncorrectResponse":
                     captainSays(
