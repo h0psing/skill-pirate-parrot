@@ -81,13 +81,8 @@ const levels = {
         + "<s>Repeat after me LOUDLY!</s> "
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
-<<<<<<< HEAD
         + "<prosody pitch='x-high'> EAST! </prosody>"
         + "<prosody pitch='x-high'> WEST! </prosody>"
-=======
-        + "<prosody pitch='x-high'> EAST! </prosody> </lang></voice>"
-        + "<prosody pitch='x-high'> WEST! </prosody> </lang></voice>"
->>>>>>> fb5b2a42e62459a76179de4d87a8541305096f3a
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
         + "<prosody pitch='x-high'> SOUTH! </prosody>"
