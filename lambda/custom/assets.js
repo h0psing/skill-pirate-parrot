@@ -68,7 +68,7 @@ const levels = {
       {
         "turn": 1,
         "Captain":captainSays(
-        + "<s>The crew think I know the way...</s> "
+        "<s>The crew think I know the way...</s> "
         + "<s>If <emphasis level='strong'>they</emphasis>know I have the map, "
         + "they’ll <emphasis level='moderate'>kill</emphasis> us!</s><break strength='strong'/> "
         + "<s>We’ll practice now up here, "
@@ -79,7 +79,7 @@ const levels = {
         + "<s>Repeat after me LOUDLY!</s> "
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
-        + "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high' pitch='fast'>" + "EAST!" + "</prosody>" + "</lang></voice>"
+        + "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high' rate='fast'>" + "EAST!" + "</prosody>" + "</lang></voice>"
         + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>"
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
