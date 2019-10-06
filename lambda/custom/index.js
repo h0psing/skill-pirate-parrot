@@ -49,7 +49,7 @@ const GetNewFactHandler = {
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    captainSays("Infamous Captain SharkTooth<emphasis level='moderate'> is eager for gold</emphasis> <break time='0.5s'/> She anchored her ship in Secret Bay,<break time='1s'/> You have agreed to help her to navigate through dangerous unknown waters for a cut of some treasure.<break time='1s'/> <emphasis level='strong'>Be careful</emphasis>to pass her instruction for the pirate crew <break time='1s'/> <emphasis level='moderate'> because one mistake </emphasis> can wreck the ship <break time='0.3s'/> or cost your life.") +
+                    narratorSays("Infamous Captain SharkTooth<emphasis level='moderate'> is eager for gold</emphasis> <break time='0.5s'/> She anchored her ship in Secret Bay,<break time='1s'/> You have agreed to help her to navigate through dangerous unknown waters for a cut of some treasure.<break time='1s'/> <emphasis level='strong'>Be careful</emphasis>to pass her instruction for the pirate crew <break time='1s'/> <emphasis level='moderate'> because one mistake </emphasis> can wreck the ship <break time='0.3s'/> or cost your life.") +
                     parrotSays(" I'll try though! ") +
                     captainSays("Are you ready to begin?");
     } else {
@@ -365,12 +365,19 @@ const YesHandler = {
       .getResponse();
   },
 };
-const captainSays = (stuff)=>{
+
+const narratorSays = (stuff)=>{
   return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
 };
+
+const captainSays = (stuff)=>{
+  return "<voice name='Amy'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
+};
+
 const parrotSays = (stuff)=>{
   return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high' rate='fast'>" + stuff + "</prosody>"+ "</lang></voice> ";
 };
+
 const NoHandler = {
   canHandle(handlerInput) {
     const request = handlerInput.requestEnvelope.request;
