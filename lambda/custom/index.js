@@ -45,6 +45,7 @@ const GetNewFactHandler = {
     let speakOutput;
 
     var timesAccessed = 1;
+    sessionAttributes.errorCount = 0;
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
@@ -128,7 +129,7 @@ const DirectionHandler = {
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
     var level = sessionAttributes.level;
-    var errorCount = 0;
+    var errorCount = sessionAttributes.errorCount;
     //level = 2;
     //turn = 1;
 
@@ -175,9 +176,13 @@ const DirectionHandler = {
       } else {
         console.log("log: incorrect direction");
         speakOutput = incorrectResponse;
+        
         errorCount = errorCount + 1;
-        if (errorCount > 2) {
-          speakOutput = captainSays("You'll walk the plank, ya scullywag!");
+        sessionAttributes.errorCount = errorCount;
+
+        if (errorCount >= 2) {
+          speakOutput = captainSays("<audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_boo_01'/> You'll walk the plank, ya scullywag! <audio src='soundbank://soundlibrary/water/bow_wash/bow_wash_02'/>");
+          sessionAttributes.errorCount = 0;
         }
       }
     } else if (sessionAttributes.state === "TUTORIAL") {
@@ -213,7 +218,8 @@ const RepeatCommandHandler = {
     console.log("log: level", level);
     let playerAnswer = handlerInput.requestEnvelope.request.intent.slots.command.value;
     var speakOutput = "";
-    var count = 0;
+    var errorCount = sessionAttributes.errorCount;
+    
     var levelTurns = Assets.levels[levelString][turn-1];
     var correctAnswerArray = levelTurns.Answer;
     sessionAttributes.state = levelTurns.STATE;
@@ -272,6 +278,11 @@ const RepeatCommandHandler = {
     } else {
       incorrectResponse = levelTurns.IncorrectResponse;
       speakOutput = speakOutput + incorrectResponse;
+      sessionAttributes.errorCount = sessionAttributes.errorCount + 1;
+      if (errorCount > 2) {
+        speakOutput = captainSays("You'll walk the plank, ya scullywag!");
+        sessionAttributes.errorCount = 0;
+      }
     }
 
     sessionAttributes.turn = turn;
@@ -280,7 +291,7 @@ const RepeatCommandHandler = {
     console.log("log: turn", turn);
     console.log("log: speakOutput", speakOutput);
 
-    var reprompt = "please say again";
+    var reprompt = "please follow the captains instructions";
     sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
@@ -382,6 +393,10 @@ const FallbackHandler = {
       && request.intent.name === 'AMAZON.FallbackIntent';
   },
   handle(handlerInput) {
+
+    console.log("log: handler FallbackHandler");
+
+
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
   const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
 
