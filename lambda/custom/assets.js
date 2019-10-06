@@ -82,7 +82,7 @@ const levels = {
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
         + "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>"+ "<prosody pitch='fast'>" + "EAST!" + "</prosody>" + "</prosody>" + "</lang></voice>"
-        + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>""
+        + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>"
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
         + "<prosody pitch='+50%'> SOUTH! </prosody> </lang></voice>"

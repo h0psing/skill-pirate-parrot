@@ -355,7 +355,7 @@ const captainSays = (stuff)=>{
   return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
 };
 const parrotSays = (stuff)=>{
-  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>" "<prosody pitch='x-fast'>" + stuff + "</prosody>"+ "</prosody>"+ "</lang></voice> ";
+  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='high'>" "<prosody pitch='x-fast'>" + stuff + "</prosody>"+ "</prosody>"+ "</lang></voice> ";
 };
 const NoHandler = {
   canHandle(handlerInput) {
