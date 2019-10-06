@@ -395,7 +395,8 @@ const FallbackHandler = {
       reprompt = "Please repeat what the captain told you";
     } else if (sessionAttributes.state === "TUTORIAL") {
       speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
-      + levelTurns.Captain + " </prosody volume> ");      reprompt = "Please repeat what the captain told you";
+      + levelTurns.Captain + " </prosody volume> ");      
+      reprompt = "Please repeat what the captain told you";
     }
 
     return handlerInput.responseBuilder
