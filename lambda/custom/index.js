@@ -390,19 +390,12 @@ const FallbackHandler = {
     console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
-<<<<<<< HEAD
-      speakOutput = captainSays("Listen up, Scallywag, " + levelTurns.Captain);
-      reprompt = "Please repeat what the captain's commands";
-    } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = captainSays("Listen up man, Scallywag"+ levelTurns.Captain);
-      reprompt = "Please repeat what the captain's commands";
-=======
-      speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
+      + levelTurns.Captain + " </prosody volume> ");
       reprompt = "Please repeat what the captain told you";
     } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = "<voice name='Russell'><lang xml:lang='en-AU'> <prosody volume = 'x-loud'> You need to listen, man! </prosody volume> </lang></voice>";
-      reprompt = "Please repeat what the captain told you";
->>>>>>> 89fc205a84c3ff730a7250eaad0a46d0094941a6
+      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!" 
+      + levelTurns.Captain + " </prosody volume> ");      reprompt = "Please repeat what the captain told you";
     }
 
     return handlerInput.responseBuilder
