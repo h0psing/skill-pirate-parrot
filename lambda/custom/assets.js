@@ -76,13 +76,18 @@ const levels = {
         + "<s>We’ll practice now up here, "
         + "<prosody volume='x-soft'>but when the time comes,</prosody> "
         + "I’ll look at the map below, shout directions up to you.</s> "
-        + "<break time='3s'/> "
+        + "<break time='1s'/> "
         + "<s>Right....</s> "
         + "<s>Repeat after me LOUDLY!</s> "
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
+<<<<<<< HEAD
         + "<prosody pitch='x-high'> EAST! </prosody>"
         + "<prosody pitch='x-high'> WEST! </prosody>"
+=======
+        + "<prosody pitch='x-high'> EAST! </prosody> </lang></voice>"
+        + "<prosody pitch='x-high'> WEST! </prosody> </lang></voice>"
+>>>>>>> fb5b2a42e62459a76179de4d87a8541305096f3a
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
         + "<prosody pitch='x-high'> SOUTH! </prosody>"
@@ -98,7 +103,7 @@ const levels = {
         "turn": 2,
         "Captain":
                     "<voice name='Russell'><lang xml:lang='en-AU'> "+
-                    "We're still not out of the woods. Repeat to the crew, west west south south"
+                    "We're still not out of the woods. Repeat to the crew, west <prosody pitch='x-high'> SOUTH! </prosody> west <prosody pitch='x-high'> SOUTH! </prosody> <prosody pitch='x-high'> WEST! </prosody> south <prosody pitch='x-high'> NORTH! </prosody> south"
                     + "</lang></voice> ",
         "Answer":"west west south south",
         "CorrectResponse":

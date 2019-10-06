@@ -48,9 +48,9 @@ const GetNewFactHandler = {
 
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
-                    "<voice name='Russell'><lang xml:lang='en-AU'> Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!" +
-                    "<prosody pitch='x-high'> I'll try though! </prosody> </lang></voice>"
-                    + "Are you ready to begin?";
+                    captainSays("Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!") +
+                    parrotSays("<prosody pitch='x-high'> I'll try though! </prosody> </lang></voice>")+
+                    captainSays("Are you ready to begin?");
     } else {
       speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. "
       + "Listen closely and memorise the directions required to navigate the waters and repeat them back. "
@@ -350,7 +350,7 @@ const captainSays = (stuff)=>{
   return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
 };
 const parrotSays = (stuff)=>{
-  return "<prosody pitch='x-high'>"+stuff+" </prosody>";
+  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>"+stuff+" </prosody>"+ "</lang></voice> ";
 };
 const NoHandler = {
   canHandle(handlerInput) {
