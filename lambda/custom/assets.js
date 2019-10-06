@@ -76,7 +76,7 @@ const levels = {
         + "<s>We’ll practice now up here, "
         + "<prosody volume='x-soft'>but when the time comes,</prosody> "
         + "I’ll look at the map below, shout directions up to you.</s> "
-        + "<break time='3s'/> "
+        + "<break time='1s'/> "
         + "<s>Right....</s> "
         + "<s>Repeat after me LOUDLY!</s> "
         + "<prosody volume='x-loud'> "
