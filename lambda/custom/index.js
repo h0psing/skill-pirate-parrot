@@ -50,7 +50,7 @@ const GetNewFactHandler = {
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
                     captainSays("Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!") +
-                    parrotSays(" I'll try though! ")+
+                    parrotSays(" I'll try though! ") +
                     captainSays("Are you ready to begin?");
     } else {
       speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. "
@@ -96,7 +96,7 @@ const GetNewFactHandler = {
 
 
 
-    reprompt = "please asay again";
+    reprompt = "do you want to start?";
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
@@ -189,7 +189,7 @@ const DirectionHandler = {
 
     }
 
-    reprompt = "Please shout out the direction";
+    reprompt = captainSays("Please shout out the direction");
     sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
@@ -278,9 +278,10 @@ const RepeatCommandHandler = {
     } else {
       incorrectResponse = levelTurns.IncorrectResponse;
       speakOutput = speakOutput + incorrectResponse;
-      sessionAttributes.errorCount = sessionAttributes.errorCount + 1;
-      if (errorCount > 2) {
-        speakOutput = captainSays("You'll walk the plank, ya scullywag!");
+      errorCount = errorCount + 1;
+      sessionAttributes.errorCount = errorCount;
+      if (errorCount >= 2) {
+        speakOutput = captainSays(" <audio src='soundbank://soundlibrary/sports/crowds/crowds_01'/> You'll walk the plank, ya scullywag! <audio src='soundbank://soundlibrary/water/bow_wash/bow_wash_02'/>");
         sessionAttributes.errorCount = 0;
       }
     }
@@ -366,7 +367,7 @@ const captainSays = (stuff)=>{
   return "<voice name='Russell'><lang xml:lang='en-AU'> " + stuff + "</lang></voice> ";
 };
 const parrotSays = (stuff)=>{
-  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>" +"<prosody rate='x-fast'>" + stuff + "</prosody>"+ "</prosody>"+ "</lang></voice> ";
+  return "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high' rate='x-fast'>" + stuff + "</prosody>"+ "</lang></voice> ";
 };
 const NoHandler = {
   canHandle(handlerInput) {
@@ -410,13 +411,13 @@ const FallbackHandler = {
     console.log("log: levelTurns: ", levelTurns);
 
     if (sessionAttributes.state === "COORDINATES") {
-      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!"
-      + levelTurns.Captain + " </prosody volume> ");
-      reprompt = "Please repeat what the captain told you";
+      speakOutput = captainSays("You need to listen, Scallywag!"
+      + levelTurns.Captain);
+      reprompt = "Please repeat what the captains instructions";
     } else if (sessionAttributes.state === "TUTORIAL") {
-      speakOutput = captainSays("<prosody volume = 'x-loud'> You need to listen, Scallywag!"
-      + levelTurns.Captain + " </prosody volume> ");
-      reprompt = "Please repeat what the captain told you";
+      speakOutput = captainSays("You need to listen, Scallywag!"
+      + levelTurns.Captain);
+      reprompt = "Please repeat what the captains instructions";
     }
 
     return handlerInput.responseBuilder
