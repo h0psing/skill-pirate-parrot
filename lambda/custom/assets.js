@@ -56,15 +56,9 @@ const levels = {
                     "OK - we're sailing away!"
                     ),
         "IncorrectResponse":
-<<<<<<< HEAD
                     captainSays(
                     "Come on land lover, tell the crew to set sail!"
                     ),
-=======
-                    "<voice name='Russell'><lang xml:lang='en-AU'> "+
-                    "Come on man, tell the crew to set sail!"+
-                    "</lang></voice> ",
->>>>>>> 4e587cd50b87c7e6d2e9206ac4f84d1ce49ca404
         "ResponseType":"Repeat",
         "STATE":"TUTORIAL",
         "Index":0
@@ -86,22 +80,14 @@ const levels = {
         + "<prosody volume='x-loud'> "
         + "<s>NORTH!</s> "
         + "<voice name='Raveena'><lang xml:lang='en-AU'> "+"<prosody pitch='x-high'>"+ "<prosody pitch='x-fast'>" + "EAST!" + "</prosody>" + "</prosody>" + "</lang></voice>"
-        + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>""
+        + "<prosody pitch='+50%'> WEST! </prosody> </lang></voice>"
         + "<s>EAST!</s> "
         + "<s>EAST!</s></prosody> "
-<<<<<<< HEAD
         + "<prosody pitch='x-high'> SOUTH! </prosody>"
         ),
         "Answer":"north east south",
         "CorrectResponse":captainSays("OK - the plan will work!"),
         "IncorrectResponse":captainSays("We’re doomed! Repeat what I said and we’ll get there in one piece!"),
-=======
-        + "<prosody pitch='+50%'> SOUTH! </prosody> </lang></voice>"
-        + "</lang></voice> ",
-        "Answer":"north east east",
-        "CorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"OK - the plan will work!"+"</lang></voice> ",
-        "IncorrectResponse":"<voice name='Russell'><lang xml:lang='en-AU'> "+"We’re doomed! Repeat what I said and we’ll get there in one piece!"+"</lang></voice> ",
->>>>>>> 4e587cd50b87c7e6d2e9206ac4f84d1ce49ca404
         "ResponseType":"Repeat",
         "STATE":"COORDINATES",
         "Index":1
