@@ -49,7 +49,7 @@ const GetNewFactHandler = {
     if (timesAccessed != 0) {
       speakOutput = '<audio src="soundbank://soundlibrary/water/splash_water/splash_water_01"/>' +
                     captainSays("Arhh land lover, welcome to the seven seas.  Let's get to skull island! And don't let my pesky parrot confuse you!") +
-                    parrotSays("<prosody pitch='x-high'> I'll try though! </prosody> </lang></voice>")+
+                    parrotSays(" I'll try though! ")+
                     captainSays("Are you ready to begin?");
     } else {
       speakOutput = "Welcome to Pirate's Parrot. In this game, you’re helping the captain and his crew navigate through perilous waters. "
@@ -128,6 +128,7 @@ const DirectionHandler = {
     var state = sessionAttributes.state;
     var turn = sessionAttributes.turn;
     var level = sessionAttributes.level;
+    var errorCount = 0;
     //level = 2;
     //turn = 1;
 
@@ -174,6 +175,10 @@ const DirectionHandler = {
       } else {
         console.log("log: incorrect direction");
         speakOutput = incorrectResponse;
+        errorCount = errorCount + 1;
+        if (errorCount > 2) {
+          speakOutput = captainSays("You'll walk the plank, ya scullywag!");
+        }
       }
     } else if (sessionAttributes.state === "TUTORIAL") {
 
