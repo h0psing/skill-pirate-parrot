@@ -189,7 +189,7 @@ const DirectionHandler = {
 
     }
 
-    reprompt = "Please shout out the direction";
+    reprompt = captainSays("Please shout out the direction");
     sessionAttributes.state = levelTurns.STATE;
 
     return handlerInput.responseBuilder
